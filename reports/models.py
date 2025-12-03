@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Report(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     local = models.ForeignKey(Institution, on_delete=models.CASCADE)
