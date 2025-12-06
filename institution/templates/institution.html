@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Instituições</title>
-    <!-- Incluindo o Freud Design System (assumindo URLs baseadas na documentação do Zenklub) -->
     <link rel="stylesheet" href="https://zenklub.com.br/freud-ds/dist/freud.css">
     <script src="https://zenklub.com.br/freud-ds/dist/freud.js"></script>
     <!-- Estilos adicionais para customização básica -->
@@ -68,6 +67,28 @@
 </head>
 <body>
     <div class="container">
+        <table>
+    <thead>
+        <tr>
+            <th>Tipo</th>
+            <th>Nome</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Site</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for institution in inst_list %}
+        <tr>
+            <td>{{ institution.itype }}</td>
+            <td>{{ institution.name }}</td>
+            <td>{{ institution.phone }}</td>
+            <td>{{ institution.email }}</td>
+            <td>{{ institution.site }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>   
         <h1>Cadastro de Instituições</h1>
         <form action="/submit" method="POST" enctype="multipart/form-data">
             <!-- Nome da Empresa -->
@@ -165,5 +186,5 @@
             <button type="submit" class="freud-button">Cadastrar Instituição</button>
         </form>
     </div>
-</body>
+
 </html>
