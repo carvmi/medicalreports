@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Instituições</title>
+    <!-- Incluindo o Freud Design System (assumindo URLs baseadas na documentação do Zenklub) -->
+    <link rel="stylesheet" href="https://zenklub.com.br/freud-ds/dist/freud.css">
+    <script src="https://zenklub.com.br/freud-ds/dist/freud.js"></script>
+    <!-- Estilos adicionais para customização básica -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .freud-input, .freud-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .freud-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .freud-button:hover {
+            background-color: #0056b3;
+        }
+        .address-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .address-fields .form-group {
+            grid-column: span 1;
+        }
+        .address-fields .form-group:nth-child(5) {
+            grid-column: span 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Instituições</h1>
+        <form action="/submit" method="POST" enctype="multipart/form-data">
+            <!-- Nome da Empresa -->
+            <div class="form-group">
+                <label for="nome-empresa">Nome da Empresa</label>
+                <input type="text" id="nome-empresa" name="nome_empresa" class="freud-input" required>
+            </div>
+
+            <!-- Endereço Físico -->
+            <fieldset>
+                <legend>Endereço Físico</legend>
+                <div class="address-fields">
+                    <div class="form-group">
+                        <label for="rua">Rua</label>
+                        <input type="text" id="rua" name="rua" class="freud-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cep">CEP</label>
+                        <input type="text" id="cep" name="cep" class="freud-input" pattern="\d{5}-\d{3}" placeholder="00000-000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro" class="freud-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" id="cidade" name="cidade" class="freud-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="uf">UF</label>
+                        <select id="uf" name="uf" class="freud-select" required>
+                            <option value="">Selecione</option>
+                            <option value="AC">AC</option>
+                            <option value="AL">AL</option>
+                            <option value="AP">AP</option>
+                            <option value="AM">AM</option>
+                            <option value="BA">BA</option>
+                            <option value="CE">CE</option>
+                            <option value="DF">DF</option>
+                            <option value="ES">ES</option>
+                            <option value="GO">GO</option>
+                            <option value="MA">MA</option>
+                            <option value="MT">MT</option>
+                            <option value="MS">MS</option>
+                            <option value="MG">MG</option>
+                            <option value="PA">PA</option>
+                            <option value="PB">PB</option>
+                            <option value="PR">PR</option>
+                            <option value="PE">PE</option>
+                            <option value="PI">PI</option>
+                            <option value="RJ">RJ</option>
+                            <option value="RN">RN</option>
+                            <option value="RS">RS</option>
+                            <option value="RO">RO</option>
+                            <option value="RR">RR</option>
+                            <option value="SC">SC</option>
+                            <option value="SP">SP</option>
+                            <option value="SE">SE</option>
+                            <option value="TO">TO</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- CNPJ -->
+            <div class="form-group">
+                <label for="cnpj">CNPJ</label>
+                <input type="text" id="cnpj" name="cnpj" class="freud-input" pattern="\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}" placeholder="00.000.000/0000-00" required>
+            </div>
+
+            <!-- Endereço Eletrônico -->
+            <div class="form-group">
+                <label for="email">Endereço Eletrônico</label>
+                <input type="email" id="email" name="email" class="freud-input" required>
+            </div>
+
+            <!-- Tipo de Local -->
+            <div class="form-group">
+                <label for="tipo-local">Tipo de Local</label>
+                <select id="tipo-local" name="tipo_local" class="freud-select" required>
+                    <option value="">Selecione</option>
+                    <option value="clinica">Clínica</option>
+                    <option value="hospital">Hospital</option>
+                    <option value="unidade-movel">Unidade Móvel</option>
+                </select>
+            </div>
+
+            <!-- Logo do Local -->
+            <div class="form-group">
+                <label for="logo">Logo do Local</label>
+                <input type="file" id="logo" name="logo" accept="image/*" class="freud-input">
+            </div>
+
+            <!-- Botão de Submissão -->
+            <button type="submit" class="freud-button">Cadastrar Instituição</button>
+        </form>
+    </div>
+</body>
+</html>
