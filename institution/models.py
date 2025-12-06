@@ -23,4 +23,6 @@ class Institution(models.Model):
         max_length=2,
         choices = TypesInstitution.choices,
         default = TypesInstitution.HOSPITAL)
+    def __str__(self):
+        return f'{self.itype} - {self.name}'
     #logo = models.ImageField(upload_to='logos/', null=True, blank=True)
