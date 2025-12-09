@@ -16,7 +16,7 @@ class TypesInstitution(models.TextChoices):
 class Institution(models.Model):
     name = models.CharField(max_length=120)
     #endereco_fisico = models.OneToOneField(Address, on_delete=models.CASCADE)
-    site = models.CharField(max_length=120)
+    site = models.CharField(max_length=120, blank = True)
     phone = models.CharField(max_length=15)
     email = models.EmailField(max_length=120)
     itype = models.CharField(
