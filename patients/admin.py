@@ -9,4 +9,4 @@ class PatientAdmin(admin.ModelAdmin):
   search_fields = 'id', 'full_name', 'cpf',
   list_per_page = 10 
   list_max_show_all = 50 
-  list_filter = 'cpf',
+  list_filter = 'sex',
