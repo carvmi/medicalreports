@@ -1,12 +1,13 @@
 from django.db import models
 
-# # # =Create your models here.
-#class Address(models.Model):
- #rua = models.CharField(max_length=120)
- #cep = models.CharField(max_length=20)
- #bairro = models.CharField(max_length=60)
- #cidade = models.CharField(max_length=60)
- #uf = models.CharField(max_length=2)
+class Address(models.Model):
+ rua = models.CharField(max_length=120)
+ cep = models.CharField(max_length=20)
+ bairro = models.CharField(max_length=60)
+ cidade = models.CharField(max_length=60)
+ uf = models.CharField(max_length=2)
+ def __str__ (self):
+    return f'{self.bairro} - {self.cidade} - {self.uf}'
 
 class TypesInstitution(models.TextChoices):
     CLINICA = 'C', ('Clinica')
@@ -15,7 +16,7 @@ class TypesInstitution(models.TextChoices):
 
 class Institution(models.Model):
     name = models.CharField(max_length=120)
-    #endereco_fisico = models.OneToOneField(Address, on_delete=models.CASCADE)
+    endereco_fisico = models.OneToOneField(Address, on_delete=models.CASCADE, null = True)
     site = models.CharField(max_length=120, blank = True)
     phone = models.CharField(max_length=15)
     email = models.EmailField(max_length=120)

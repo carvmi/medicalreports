@@ -10,3 +10,13 @@ class InstitutionAdmin(admin.ModelAdmin):
   list_per_page = 10 
   list_max_show_all = 50 
   list_filter = 'itype',
+@admin.register(models.Address)
+class AdressAdmin(admin.ModelAdmin):
+  ...
+  # list_display = 'id', 'name', 'itype', 'phone', 'email',
+  # ordering = 'id',
+  # search_fields = 'id', 'name', 'itype',
+  # list_per_page = 10 
+  # list_max_show_all = 50 
+  # list_filter = 'itype',
+
