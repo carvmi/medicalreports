@@ -4,9 +4,8 @@ from institution import models as institutionmodel
 class HealthProfessional(models.Model):
     full_name = models.CharField(max_length=150)
     position = models.CharField(max_length=100)
-    institution = models.ForeignKey(
+    institution = models.ManyToManyField(
         institutionmodel.Institution,
-        on_delete=models.CASCADE,
         related_name="professionals"
     )
     specialization = models.CharField(max_length=120)
