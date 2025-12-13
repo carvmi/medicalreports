@@ -3,4 +3,7 @@
 - Models: Onde gerencia o banco de dados
 - Views: Todas as funções python responsáveis por gerenciar o processamento das URLs (é necessário importar as views no arquivos "urls.py")
 - Templates: arquivos html
+### Relacionamentos
+- Medprofiles e Institution - Many to Many (Muitos para muitos)
+
 
