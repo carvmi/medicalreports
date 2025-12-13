@@ -1,18 +1,11 @@
 from django.db import models
-
-
-class Institution(models.Model):
-    name = models.CharField(max_length=120)
-
-    def __str__(self):
-        return self.name
-
+from institution import models as institutionmodel
 
 class HealthProfessional(models.Model):
     full_name = models.CharField(max_length=150)
     position = models.CharField(max_length=100)
     institution = models.ForeignKey(
-        Institution,
+        institutionmodel.Institution,
         on_delete=models.CASCADE,
         related_name="professionals"
     )
