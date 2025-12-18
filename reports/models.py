@@ -11,3 +11,4 @@
     
 #     # Campo que receberá a resposta da IA
 #     resultado_ia = models.JSONField(null=True, blank=True)
+# Vincular o logotipo aqui depois de acrescentar em institution 
