@@ -26,4 +26,4 @@ class Institution(models.Model):
         default = TypesInstitution.HOSPITAL)
     def __str__(self):
         return f'{self.itype} - {self.name}'
-    #logo = models.ImageField(upload_to='logos/', null=True, blank=True)
+    logo = models.ImageField(upload_to='logos/', null=True, blank=True)
