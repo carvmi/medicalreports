@@ -1,4 +1,4 @@
-## Sistema de apoio ao diagnóstico do câncer de mama por análise de mamografias por inteligência artificial
+## Sistema de apoio ao diagnóstico do câncer de mama por análise de mamografias
 ### Objetivo
 A solução permite que profissionais médicos tenham acesso aos protótipos de inteligência artificial para auxiliar no diagnóstico. Além disso, auxilia o Grupo de Pesquisas em Computação Biomédica, do Instituto do Complexo Econômico-Industrial da Saúde da UFPE, a validar as soluções atuais em desenvolvimento.
 ### Acesso
