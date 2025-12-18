@@ -1,26 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from medprofiles.models import HealthProfessional
-from django.http import HttpResponse
 
-# Create your views here.
-def medprofiles(request):
- medprofiles = HealthProfessional.objects.all()
- contexto = {
-   'med_list': medprofiles
- }
-
- return render(
-  request,
-    'medprofiles.html',
-    contexto
-  )
+def index(request):
+ return render (
+    request, 'index.html'
+ )
 
 def add(request):
+ if request.method == "POST":
+        n = request.POST['full_name']
+        p = request.POST['position']
+        i = request.POST['institution']
+        s = request.POST['specialization']
+        r = request.POST['professional_registration']
+        medpro = HealthProfessional(full_name=n, position=p, institution=i, specialization = s, professional_registration = r)
+        medpro.save()
+        #return redirect('medlist')
  return render(
   request, 
-  'medprofiles.html'
+  'medform.html'
  )
 def store(request):
- data = request.GET.dict()
- medpro = medprofiles.objects.create(**data)
- return HttpResponse ('Log no terminal')
+ ...
