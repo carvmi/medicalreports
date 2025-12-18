@@ -1,3 +1,13 @@
+## Sistema de apoio ao diagnóstico do câncer de mama por análise de mamografias por inteligência artificial
+### Objetivo
+A solução permite que profissionais médicos tenham acesso aos protótipos de inteligência artificial para auxiliar no diagnóstico. Além disso, auxilia o Grupo de Pesquisas em Computação Biomédica, do Instituto do Complexo Econômico-Industrial da Saúde da UFPE, a validar as soluções atuais em desenvolvimento.
+### Acesso
+Para acesso ao sistema, o usuário precisa ser identificado via login. Conforme as exigências da Sociedade Brasileira de Informática em Saúde e da ANVISA para esse tipo de sistema, as ações desse usuário precisam também ser rastreadas e armazenas em arquivo de log.
+### Inteligência Artificial
+Após realizado o login, o usuário deve conseguir escolher uma imagem de mamografia previamente armazenada como arquivo. O sistema vai exibir uma visualização navegável da imagem em tela. Após seleção da região suspeita de lesão na mama, será habilitada a funcionalidade de análise automática, acionada por um botão. Ao acionar o botão, a imagem será enviada para uma API que a envia para máquina de aprendizado e retorna o resultado da classificação. A API retorna esse resultado para o front, que elabora uma prévia do laudo gerado pela IA para o usuário.
+### Laudo
+Caso o usuário concorde, o laudo poderá ser impresso em PDF ou impressora. O laudo apresenta o nome completo do usuário, intituição e registro profissional, além da afirmação que o usuário concorda com o resultado gerado pela máquina. A aparência do laudo pode ser configurada previamente, exibindo um cabeçalho com o nome, marca e o endereço físico e eletrônico da instituição. Essa configuração é carregada do banco de dados logo após o usuário se logar. 
+
 ## Padrão do Django
 - O Django segue o padrão MVT, o que significa que tem três arquivos principais: Models, Views e Templates. 
 - Models: Onde gerencia o banco de dados
