@@ -12,8 +12,5 @@ def patients(request):
   if form.is_valid():
    form.save()
    return HttpResponse ("Sucess")
-  return render(
-  request,
-    'patients.html', {'form': form}
-  )
+ return render(request, 'patients.html', {'form': form})
  
