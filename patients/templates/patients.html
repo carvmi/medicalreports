@@ -65,7 +65,7 @@
 <body>
     <div class="container">
         <h1>Cadastro de Paciente</h1>
-        <form action="patients/" method="post">  <!-- Ajuste a action para a URL da sua view Django -->
+        <form method="post">  <!-- Ajuste a action para a URL da sua view Django -->
             {% csrf_token %}  <!-- Se estiver usando Django templates -->
 
            {{form.as_p}}
