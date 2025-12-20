@@ -27,12 +27,6 @@ class Patient(models.Model):
         help_text="Optional, but must be unique if provided."
     )
 
-    rg = models.CharField(
-        max_length=20,
-        null=True,
-        blank=True,
-    )
-
     # Contact
     phone = models.CharField(max_length=20, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Paciente</title>
+    <title>Pacientes</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -65,45 +65,10 @@
 <body>
     <div class="container">
         <h1>Cadastro de Paciente</h1>
-        <form action="/cadastrar-paciente/" method="post">  <!-- Ajuste a action para a URL da sua view Django -->
+        <form method="post">  <!-- Ajuste a action para a URL da sua view Django -->
             {% csrf_token %}  <!-- Se estiver usando Django templates -->
 
-            <label for="full_name">Nome Completo <span class="required">*</span></label>
-            <input type="text" id="full_name" name="full_name" maxlength="150" required>
-
-            <label for="birth_date">Data de Nascimento <span class="required">*</span></label>
-            <input type="date" id="birth_date" name="birth_date" required>
-
-            <label for="sex">Sexo</label>
-            <select id="sex" name="sex">
-                <option value="N" selected>Não especificado</option>
-                <option value="M">Masculino</option>
-                <option value="F">Feminino</option>
-                <option value="O">Outro</option>
-            </select>
-
-            <label for="cpf">CPF</label>
-            <input type="text" id="cpf" name="cpf" maxlength="11" pattern="\d{11}" title="CPF deve conter exatamente 11 dígitos.">
-            <div class="help-text">Opcional, mas deve ser único se fornecido.</div>
-
-            <label for="rg">RG</label>
-            <input type="text" id="rg" name="rg" maxlength="20">
-
-            <label for="phone">Telefone</label>
-            <input type="tel" id="phone" name="phone" maxlength="20">
-
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email">
-
-            <label for="allergies">Alergias</label>
-            <textarea id="allergies" name="allergies"></textarea>
-
-            <label for="pre_existing_conditions">Condições Pré-existentes</label>
-            <textarea id="pre_existing_conditions" name="pre_existing_conditions"></textarea>
-
-            <label for="notes">Observações</label>
-            <textarea id="notes" name="notes"></textarea>
-
+           {{form.as_p}}
             <button type="submit">Cadastrar Paciente</button>
         </form>
     </div>
