@@ -5,7 +5,7 @@ from .forms import PatientForm
 
 # Create your views here.
 
-def patients(request):
+def pform(request):
  form = PatientForm()
  if request.method == 'POST':
   form = PatientForm(request.POST)
