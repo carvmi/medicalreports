@@ -46,11 +46,3 @@ class Patient(models.Model):
         verbose_name = "Patient"
         verbose_name_plural = "Patients"
         ordering = ["full_name"]
-
-class Mammogram(models.Model):
-    patient = models.ForeignKey(
-        Patient,
-        related_name='mammograms',
-        on_delete=models.CASCADE
-    )
-    image = models.ImageField(upload_to='mammograms/', null=True, blank=True)
