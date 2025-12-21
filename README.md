@@ -15,5 +15,6 @@ Caso o usuário concorde, o laudo poderá ser impresso em PDF ou impressora. O l
 - Templates: arquivos html
 ### Relacionamentos
 - Medprofiles e Institution - Many to Many (Muitos para muitos)
+- Patient e Mammogram - One to Many (Um para muitos)
 
 
