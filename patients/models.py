@@ -15,7 +15,6 @@ class Patient(models.Model):
     full_name = models.CharField(max_length=150)
     birth_date = models.DateField()
     sex = models.CharField(max_length=1, choices=SEX_CHOICES, default="N")
-
     cpf = models.CharField(
         max_length=11,
         unique=True,
@@ -47,3 +46,11 @@ class Patient(models.Model):
         verbose_name = "Patient"
         verbose_name_plural = "Patients"
         ordering = ["full_name"]
+
+class Mammogram(models.Model):
+    patient = models.ForeignKey(
+        Patient,
+        related_name='mammograms',
+        on_delete=models.CASCADE
+    )
+    image = models.ImageField(upload_to='mammograms/', null=True, blank=True)

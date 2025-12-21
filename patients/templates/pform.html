@@ -69,6 +69,7 @@
             {% csrf_token %}  <!-- Se estiver usando Django templates -->
 
            {{form.as_p}}
+           <input type="file" name="mammograms" multiple>
             <button type="submit">Cadastrar Paciente</button>
         </form>
     </div>
