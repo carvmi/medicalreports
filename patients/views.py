@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from patients.models import Patient
-from patients.models import Mammogram
 from django.http import HttpResponse
 from .forms import PatientForm
 
