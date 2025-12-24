@@ -10,7 +10,7 @@ class MammogramExam(models.Model):
         related_name="mammograms"
     )
 
-    local = models.ForeignKey(Institution, on_delete=models.CASCADE)
+    local = models.ForeignKey(Institution, on_delete=models.CASCADE, default=1)
     exam_date = models.DateField()
     description = models.TextField(null=True, blank=True)
     result = models.CharField(
@@ -19,7 +19,7 @@ class MammogramExam(models.Model):
         blank=True
     )
     acceptance_term = models.BooleanField(default=False)
-    user_ip = models.GenericIPAddressField()
+    user_ip = models.GenericIPAddressField(default='127.0.0.1')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
