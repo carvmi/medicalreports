@@ -1,5 +1,7 @@
 from django.db import models
 from patients.models import Patient
+from institution.models import Institution
+    
 
 class MammogramExam(models.Model):
     patient = models.ForeignKey(
@@ -8,6 +10,7 @@ class MammogramExam(models.Model):
         related_name="mammograms"
     )
 
+    local = models.ForeignKey(Institution, on_delete=models.CASCADE)
     exam_date = models.DateField()
     description = models.TextField(null=True, blank=True)
     result = models.CharField(
@@ -16,7 +19,7 @@ class MammogramExam(models.Model):
         blank=True
     )
     acceptance_term = models.BooleanField(default=False)
-
+    user_ip = models.GenericIPAddressField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
