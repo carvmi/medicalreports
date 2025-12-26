@@ -4,6 +4,15 @@ from django.http import HttpResponse
 from .forms import PatientForm
 
 # Create your views here.
+def plist(request):
+    dados = Patient.objects.all()
+    return render(
+        request,
+        'plist.html',
+        {
+            'dados':dados
+        }
+    ) 
 
 def pform(request):
  form = PatientForm()
