@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from patients.models import Patient
 from django.http import HttpResponse
 from .forms import PatientForm
@@ -20,6 +20,6 @@ def pform(request):
   form = PatientForm(request.POST)
   if form.is_valid():
    form.save()
-   return HttpResponse ("Sucess")
+   return redirect('plist') 
  return render(request, 'pform.html', {'form': form})
  
