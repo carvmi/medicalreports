@@ -1,24 +1,39 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from institution.models import Institution
 from medprofiles.models import HealthProfessional
 
-def index(request):
- return render (
-    request, 'index.html'
- )
+def view(request):
+    med = HealthProfessional.objects.all()
+    inst = Institution.objects.all()
+    return render(
+        request,
+        'plist.html',
+        {
+            'med': med, 
+            'inst': inst
+        }
+    ) 
 
-def add(request):
- if request.method == "POST":
-        n = request.POST['full_name']
-        p = request.POST['position']
-        i = request.POST['institution']
-        s = request.POST['specialization']
-        r = request.POST['professional_registration']
-        medpro = HealthProfessional(full_name=n, position=p, institution=i, specialization = s, professional_registration = r)
-        medpro.save()
-        #return redirect('medlist')
- return render(
-  request, 
-  'medform.html'
- )
-def store(request):
- ...
+def create(request):
+ form = MedForm()
+ if request.method == 'POST':
+  form = MedForm(request.POST)
+  if form.is_valid():
+   form.save()
+   return redirect('view') 
+ return render(request, 'pform.html', {'form': form})
+ 
+def edit(request, id):
+   medprofiles = get_object_or_404(HealthProfessional, pk=id)
+   form = MedForm(instance=medprofiles)
+   if request.method == "POST":
+    form = MedForm(request.POST, instance=medprofiles)
+    if form.is_valid():
+     form.save()
+     return redirect('view')
+   return render(request, 'mededit.html', {'form': form, 'medprofiles': medprofiles})
+
+def delete(request, id):
+    med = get_object_or_404(HealthProfessional, pk=id)
+    med.delete()
+    return redirect('view')

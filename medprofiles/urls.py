@@ -1,7 +1,9 @@
 from django.urls import include, path
-from medprofiles import views
+from medprofiles.views import view, create, edit, delete
 
 urlpatterns = [
-    path("criar/", views.add),
-    path("store/", views.store),
+    path("add", create, name='create'),
+    path("", view, name='view'),
+    path("edit/<int:id>", edit, name='edit'),
+    path("delete/<int:id>", delete, name='delete'),
 ]
