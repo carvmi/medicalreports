@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from institution.models import Institution
 from medprofiles.models import HealthProfessional
+from .forms import MedForm
 
 def view(request):
     med = HealthProfessional.objects.all()
     inst = Institution.objects.all()
     return render(
         request,
-        'plist.html',
+        'medlist.html',
         {
             'med': med, 
             'inst': inst
@@ -21,7 +22,7 @@ def create(request):
   if form.is_valid():
    form.save()
    return redirect('view') 
- return render(request, 'pform.html', {'form': form})
+ return render(request, 'medform.html', {'form': form})
  
 def edit(request, id):
    medprofiles = get_object_or_404(HealthProfessional, pk=id)
