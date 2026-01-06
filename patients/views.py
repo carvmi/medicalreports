@@ -1,10 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from patients.models import Patient
-from django.http import HttpResponse
 from .forms import PatientForm
 
-# Create your views here.
-def plist(request):
+def view(request):
     dados = Patient.objects.all()
     return render(
         request,
@@ -14,12 +12,20 @@ def plist(request):
         }
     ) 
 
-def pform(request):
+def create(request):
  form = PatientForm()
  if request.method == 'POST':
   form = PatientForm(request.POST)
   if form.is_valid():
    form.save()
-   return redirect('plist') 
+   return redirect('view') 
  return render(request, 'pform.html', {'form': form})
  
+def edit(request, id):
+   patient = get_object_or_404(Patient, pk=id)
+   form = PatientForm(instance=patient)
+   if request.method == "POST":
+    if form.is_valid():
+     form.save()
+     return redirect('view')
+   return render(request, 'pedit.html', {'form': form, 'patient': patient})

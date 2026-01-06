@@ -1,7 +1,8 @@
 from django.urls import include, path
-from patients.views import plist, pform
+from patients.views import view, create, edit
 
 urlpatterns = [
-    path("add", pform, name='pform'),
-    path("", plist, name='plist'),
+    path("add", create, name='create'),
+    path("", view, name='view'),
+    path("edit/<int:id>", edit, name='edit'),
 ]
