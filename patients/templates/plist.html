@@ -73,6 +73,7 @@
                 <h6 class="card-subtitle mb-2 text-body-secondary">{{ patient.phone }}</h6>
                 <p class="card-text">{{ patient.email }}</p>
                 <a href="{% url 'edit' patient.id %}" class="btn btn-primary">Editar</a>
+                <a href="{% url 'delete' patient.id %}" class="btn btn-primary">Deletar</a>
             </div>
         </div>
         {% endfor %}
