@@ -30,3 +30,8 @@ def edit(request, id):
      form.save()
      return redirect('view')
    return render(request, 'pedit.html', {'form': form, 'patient': patient})
+
+def delete(request, id):
+    patient = get_object_or_404(Patient, pk=id)
+    patient.delete()
+    return redirect('view')
