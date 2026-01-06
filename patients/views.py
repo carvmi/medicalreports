@@ -25,6 +25,7 @@ def edit(request, id):
    patient = get_object_or_404(Patient, pk=id)
    form = PatientForm(instance=patient)
    if request.method == "POST":
+    form = PatientForm(request.POST, instance=patient)
     if form.is_valid():
      form.save()
      return redirect('view')
