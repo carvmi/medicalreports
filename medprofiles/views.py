@@ -1,17 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from institution.models import Institution
 from medprofiles.models import HealthProfessional
 from .forms import MedForm
 
 def view(request):
     med = HealthProfessional.objects.all()
-    inst = Institution.objects.all()
     return render(
         request,
         'medlist.html',
         {
             'med': med, 
-            'inst': inst
         }
     ) 
 
@@ -21,20 +18,20 @@ def create(request):
   form = MedForm(request.POST)
   if form.is_valid():
    form.save()
-   return redirect('view') 
+   return redirect('med.view') 
  return render(request, 'medform.html', {'form': form})
  
 def edit(request, id):
-   medprofiles = get_object_or_404(HealthProfessional, pk=id)
-   form = MedForm(instance=medprofiles)
+   healthprofessional = get_object_or_404(HealthProfessional, pk=id)
+   form = MedForm(instance=healthprofessional)
    if request.method == "POST":
-    form = MedForm(request.POST, instance=medprofiles)
+    form = MedForm(request.POST, instance=healthprofessional)
     if form.is_valid():
      form.save()
-     return redirect('view')
-   return render(request, 'mededit.html', {'form': form, 'medprofiles': medprofiles})
+     return redirect('med.view')
+   return render(request, 'mededit.html', {'form': form, 'healthprofessional': healthprofessional})
 
 def delete(request, id):
     med = get_object_or_404(HealthProfessional, pk=id)
     med.delete()
-    return redirect('view')
+    return redirect('med.view')

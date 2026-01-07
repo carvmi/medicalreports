@@ -66,13 +66,13 @@
 </head>
 <body>
     <div class="container">
-        <form action="{% url 'p.edit' patient.id %}" method="post"> 
+        <form action="{% url 'med.edit' healthprofessional.id %}" method="post"> 
             {% csrf_token %}
 
            {{form.as_p}}
            
            
-            <button type="submit">{% if patient.id %}Salvar Alterações{% else %}Cadastrar{% endif %}</button>
+            <button type="submit">{% if healthprofessional.id %}Salvar Alterações{% else %}Cadastrar{% endif %}</button>
         </form>
     </div>
 
