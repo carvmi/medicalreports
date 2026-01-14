@@ -6,8 +6,9 @@ class Address(models.Model):
  bairro = models.CharField(max_length=60)
  cidade = models.CharField(max_length=60)
  uf = models.CharField(max_length=2)
+ number = models.CharField(max_length=5, default = '0')
  def __str__ (self):
-    return f'{self.bairro} - {self.cidade} - {self.uf}'
+    return f'{self.bairro} - {self.cidade} - {self.uf} - {self.number} '
 
 class TypesInstitution(models.TextChoices):
     CLINICA = 'C', ('Clinica')
@@ -26,4 +27,4 @@ class Institution(models.Model):
         default = TypesInstitution.HOSPITAL)
     def __str__(self):
         return f'{self.itype} - {self.name}'
-    logo = models.ImageField(upload_to='logos/', null=True, blank=True)
+    logo = models.ImageField(upload_to='institution/media', null=True, blank=True)

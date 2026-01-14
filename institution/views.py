@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from institution.models import Institution
-from .forms import InstForm
+from institution.models import Institution, Address
+from .forms import InstForm, AddressForm
 
 def view(request):
     dados = Institution.objects.all()
@@ -8,7 +8,7 @@ def view(request):
         request,
         'instlist.html',
         {
-            'dados':dados
+            'dados':dados,
         }
     ) 
 
@@ -20,6 +20,16 @@ def create(request):
    form.save()
    return redirect('inst.view') 
  return render(request, 'instform.html', {'form': form})
+
+def adcreate(request):
+ address = Address.objects.all()
+ form = AddressForm()
+ if request.method == 'POST':
+  form = AddressForm(request.POST)
+  if form.is_valid():
+   form.save()
+   return redirect('inst.view') 
+ return render(request, 'adform.html', {'form': form, 'address': address})
  
 def edit(request, id):
    inst = get_object_or_404(Institution, pk=id)
