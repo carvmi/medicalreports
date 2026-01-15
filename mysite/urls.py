@@ -6,6 +6,6 @@ urlpatterns = [
     path("institution/", include("institution.urls")),
     path("patients/", include("patients.urls")),
     path("medprofiles/", include("medprofiles.urls")),
-    path("", include("login.urls")),
+    path("login/", include("login.urls")),
     path("admin/", admin.site.urls),
 ]
