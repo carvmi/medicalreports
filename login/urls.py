@@ -1,6 +1,8 @@
 from django.urls import include, path
-from login.views import Login
+from login.views import cadastro, login
 
 urlpatterns = [
-    path("", Login.as_view(), name="login")
+    path("cadastro", cadastro, name="cadastro"),
+    path("", login, name="login"),
+    
 ]
