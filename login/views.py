@@ -10,6 +10,12 @@ def cadastro(request):
    username = request.POST.get('username')
    email = request.POST.get('email')
    password = request.POST.get('password')
+
+   user = User.objects.get(username=username)
+
+   if user:
+     return HttpResponse("Usuário já existe")
+   else:
    return HttpResponse(username)
 
 def login(request):
