@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MamoIA - Login por Perfil</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0891b2", // Cyan 600 - Hospitalar/Clean
+                        "primary-hover": "#0e7490", // Cyan 700
+                        "background-light": "#f0f9ff", // Very light blue tint
+                        "background-dark": "#0f172a", // Slate 900
+                        "surface-dark": "#1e293b"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body>
+    <body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased h-screen overflow-hidden">
+<div class="flex min-h-screen w-full">
+<div class="hidden lg:flex lg:w-7/12 relative flex-col p-12 overflow-hidden bg-slate-900">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center opacity-40 mix-blend-overlay transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD4XfKZD3asVZ0fOkLmLooH5E1-t7FIQYmRjWQNFMR3qwnVBFgMZLr073ZP_Gbf70hsddyl_l1c6JbWv5jyzfaI7YTXfMvyQ7MOxmT3Acgsukv3L0Mk707LT1DZZVj4oykXO9Jtz8QhRvW1MkiumoPF4gupc0kPqZ2RpdQbOoujgOoJja0LZ0RoUXPYlU15M2BIjFYkz3yqc1ynPmD9PMHtkEcdw8B6cNB82KXVoryhbN2XB40vrI_ICU4C3FWHKMbZM52f6Br-zNMN');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900/80 to-primary/30"></div>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 text-white/90">
+<div class="p-2 bg-white/10 backdrop-blur-sm rounded-lg border border-white/10">
+<span class="material-symbols-outlined text-3xl">local_hospital</span>
+</div>
+<h2 class="text-lg font-semibold tracking-wide">MamoIA</h2>
+</div>
+</div>
+<div class="relative z-10 max-w-xl my-auto">
+<h1 class="text-4xl font-light text-white mb-6 leading-tight">
+                Diagnóstico preciso, <br/>
+<span class="font-bold text-cyan-200">Segurança total.</span>
+</h1>
+<p class="text-lg text-slate-300 font-light">
+                Ambiente seguro para mastologistas e profissionais de saúde. Acesso restrito e monitorado.
+            </p>
+</div>
+</div>
+<div class="flex w-full lg:w-5/12 flex-col justify-center px-6 py-12 lg:px-16 xl:px-24 bg-white dark:bg-background-dark shadow-xl z-20">
+<div class="w-full max-w-md mx-auto">
+<div class="lg:hidden flex justify-center mb-8">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-4xl">local_hospital</span>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">MamoIA</h2>
+</div>
+</div>
+<div class="mb-8">
+<h2 class="text-slate-900 dark:text-white text-2xl font-bold tracking-tight">Login</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Insira suas credenciais para acessar o prontuário.</p>
+</div>
+    {% block content %}
+    {% endblock %}
+    
+</body>
+</html>
