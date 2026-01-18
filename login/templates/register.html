@@ -1,11 +1,30 @@
-{% extends "base.html" %}
+{% extends "baselogin.html" %}
 {% block content%}
 
-<h1>Cadastro de Usuário</h1>
+<h2 class="text-slate-900 dark:text-white text-2xl font-bold tracking-tight">Cadastro</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Insira suas credenciais para acessar o prontuário.</p>
+</div>
+<div class="mb-8">
 <form method="post">
+    <div class="p-4 bg-slate-50 dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden group hover:border-primary/50 transition-colors">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
     {% csrf_token %%}
-<input type="text" name="username" placeholder="Nome de usuário" required><br>
-<input type="email" name="email" placeholder="E-mail" required><br>
+    <div class="space-y-4 pt-2">
+<div>
+<label class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200" for="username" id="username-label">
+                            Usuário
+                        </label>
+<div class="relative mt-1">
+</div>
+<input class="block w-full rounded-lg border-0 py-3 pl-10 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-600 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-surface-dark sm:text-sm sm:leading-6" type="text" name="username" placeholder="Nome de usuário" required><br>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200" for="password">
+                            E-mail
+                        </label>
+<div class="relative mt-1">
+<input class="block w-full rounded-lg border-0 py-3 pl-10 pr-10 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-600 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-surface-dark sm:text-sm sm:leading-6" type="email" name="email" placeholder="E-mail" required><br>
 <input type="password" name="password" placeholder="Senha" required><br>
 <button type="submit">Cadastrar</button>
 </form>

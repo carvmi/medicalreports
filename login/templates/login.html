@@ -1,11 +1,42 @@
 {% extends "baselogin.html" %}
 {% block content%}
 
-<h1>Cadastro de Usuário</h1>
+<h2 class="text-slate-900 dark:text-white text-2xl font-bold tracking-tight">Login</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Insira suas credenciais para acessar o prontuário.</p>
+</div>
+<div class="mb-8">
 <form method="post">
+    <div class="p-4 bg-slate-50 dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden group hover:border-primary/50 transition-colors">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
     {% csrf_token %%}
-<input type="text" name="username" placeholder="Nome de usuário" required><br>
-<input type="password" name="password" placeholder="Senha" required><br>
-<button type="submit">Cadastrar</button>
+
+<div>
+<label class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200" for="username" id="username-label">
+                            Usuário
+                        </label>
+    <div class="relative mt-1">
+<input class="block w-full rounded-lg border-0 py-3 pl-10 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-600 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-surface-dark sm:text-sm sm:leading-6" type="text" name="username" placeholder="Nome de usuário" required><br>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200" for="password">
+                            Senha
+                        </label>
+<div class="relative mt-1">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+</div>
+<input class="block w-full rounded-lg border-0 py-3 pl-10 pr-10 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-600 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-surface-dark sm:text-sm sm:leading-6" type="password" name="password" placeholder="Senha" required><br>
+</div>
+</div>
+<div class="flex justify-end mt-1">
+<a class="text-xs font-medium text-slate-500 hover:text-primary dark:text-slate-400 transition-colors" href="cadastro/">
+                                Cadastre-se agora
+                            </a>
+</div>
+</div>
+</div>
+<button class="flex w-full justify-center rounded-lg bg-primary px-3 py-3 text-sm font-semibold leading-6 text-white shadow-md hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all duration-200 mt-6" type="submit">
+    Entrar
+</button>
 </form>
 {% endblock %}
