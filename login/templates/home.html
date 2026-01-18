@@ -4,13 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>OncoDetect</title>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-
-  <!-- Tailwind -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -32,8 +31,41 @@
     }
   </script>
 </head>
-
-<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased">
+<body>
+    <body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased h-screen overflow-hidden">
+<div class="flex min-h-screen w-full">
+<div class="hidden lg:flex lg:w-7/12 relative flex-col p-12 overflow-hidden bg-slate-900">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center opacity-40 mix-blend-overlay transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD4XfKZD3asVZ0fOkLmLooH5E1-t7FIQYmRjWQNFMR3qwnVBFgMZLr073ZP_Gbf70hsddyl_l1c6JbWv5jyzfaI7YTXfMvyQ7MOxmT3Acgsukv3L0Mk707LT1DZZVj4oykXO9Jtz8QhRvW1MkiumoPF4gupc0kPqZ2RpdQbOoujgOoJja0LZ0RoUXPYlU15M2BIjFYkz3yqc1ynPmD9PMHtkEcdw8B6cNB82KXVoryhbN2XB40vrI_ICU4C3FWHKMbZM52f6Br-zNMN');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900/80 to-primary/30"></div>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 text-white/90">
+<div class="p-2 bg-white/10 backdrop-blur-sm rounded-lg border border-white/10">
+<span class="material-symbols-outlined text-3xl">local_hospital</span>
+</div>
+<h2 class="text-lg font-semibold tracking-wide">OncoDetect</h2>
+</div>
+</div>
+<div class="relative z-10 max-w-xl my-auto">
+<h1 class="text-4xl font-light text-white mb-6 leading-tight">
+                Diagnóstico preciso, <br/>
+<span class="font-bold text-cyan-200">Segurança total.</span>
+</h1>
+<p class="text-lg text-slate-300 font-light">
+                Ambiente seguro para mastologistas e profissionais de saúde. Acesso restrito e monitorado.
+            </p>
+</div>
+</div>
+<div class="flex w-full lg:w-5/12 flex-col justify-center px-6 py-12 lg:px-16 xl:px-24 bg-white dark:bg-background-dark shadow-xl z-20">
+<div class="w-full max-w-md mx-auto">
+<div class="lg:hidden flex justify-center mb-8">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-4xl">local_hospital</span>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">OncoDetect</h2>
+</div>
+</div>
 <!-- Header -->
 <header class="absolute top-0 right-0 w-full z-20">
   <div class="max-w-7xl mx-auto px-6 py-6 flex justify-end gap-4">
@@ -53,17 +85,14 @@
 <!-- Hero Section -->
 <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
 
-  <!-- Background -->
-  <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/20"></div>
-  </div>
+ 
 
   <!-- Conteúdo -->
   <div class="relative z-10 max-w-4xl text-center px-6">
 
     <h1 class="text-4xl md:text-6xl font-light mb-6 leading-tight">
       Tecnologia que apoia<br/>
-      <span class="font-bold text-primary">decisões médicas</span>
+      <span class="font-bold text-cyan-200">decisões médicas</span>
     </h1>
 
     <!-- Subtítulo dinâmico -->
