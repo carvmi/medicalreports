@@ -11,21 +11,22 @@
     {% csrf_token %%}
     <div class="space-y-4 pt-2">
 <div>
-<label class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200" for="username" id="username-label">
+<label class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200" for="username">
                             Usuário
                         </label>
 <div class="relative mt-1">
 </div>
 <input class="block w-full rounded-lg border-0 py-3 pl-10 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-600 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-surface-dark sm:text-sm sm:leading-6" type="text" name="username" placeholder="Nome de usuário" required><br>
-</div>
-</div>
-<div>
-<label class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200" for="password">
+<label class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200" for="email">
                             E-mail
                         </label>
 <div class="relative mt-1">
 <input class="block w-full rounded-lg border-0 py-3 pl-10 pr-10 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-600 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-surface-dark sm:text-sm sm:leading-6" type="email" name="email" placeholder="E-mail" required><br>
-<input type="password" name="password" placeholder="Senha" required><br>
-<button type="submit">Cadastrar</button>
+<label class="block text-sm font-medium leading-6 text-slate-700 dark:text-slate-200" for="password">
+                            Senha
+                        </label>
+<div class="relative mt-1">
+<input class="block w-full rounded-lg border-0 py-3 pl-10 pr-10 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-600 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-surface-dark sm:text-sm sm:leading-6" type="password" name="password" placeholder="Senha" required><br>
+<button class="flex w-full justify-center rounded-lg bg-primary px-3 py-3 text-sm font-semibold leading-6 text-white shadow-md hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all duration-200 mt-6" type="submit">Cadastrar</button>
 </form>
 {% endblock %}
