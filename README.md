@@ -17,4 +17,16 @@ Caso o usuário concorde, o laudo poderá ser impresso em PDF ou impressora. O l
 - Medprofiles e Institution - Many to Many (Muitos para muitos)
 - Patient e Mammogram - One to Many (Um para muitos)
 
+## Templates
+### Homepage
+<img width="1915" height="946" alt="image" src="https://github.com/user-attachments/assets/aec7f1a5-a28b-4b31-ae13-0386f8ad25ca" />
+
+### Login 
+<img width="1911" height="939" alt="image" src="https://github.com/user-attachments/assets/682972c3-ba85-472a-bc86-9cfc738fff0c" />
+
+### Cadastro 
+<img width="1902" height="933" alt="image" src="https://github.com/user-attachments/assets/11dcbaaa-5d45-4d51-9c6e-fe7ba32851d4" />
+
+
+
 
