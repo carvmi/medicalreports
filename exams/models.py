@@ -3,16 +3,16 @@ from patients.models import Patient
 from institution.models import Institution
     
 class Status(models.TextChoices):
-        PENDING = "PENDING", "Pendente"
-        READY = "READY", "Laudo Pronto" 
-        DELIVERED = "DELIVERED", "Laudo Entregue"
-        CANCELED = "CANCELED", "Laudo Cancelado"
+        PENDENTE = "PENDENTE", "Pendente"
+        PRONTO = "PRONTO", "Laudo Pronto" 
+        ENTREGUE = "ENTREGUE", "Laudo Entregue"
+        CANCELADO = "CANCELADO", "Laudo Cancelado"
 
 class Result(models.TextChoices):
         SAUDAVEL = "SAUDAVEL", "Saudavel"
-        BENIGN = "BENIGN", "Benigno"
-        MALIGNANT = "MALIGNANT", "Maligno"
-        INDETERMINATE = "INDETERMINATE", "Indeterminado"
+        BENIGNO = "BENIGNO", "Benigno"
+        MALIGNO = "MALIGNO", "Maligno"
+        INDETERMINADO = "INDETERMINADO", "Indeterminado"
 
 
 class MammogramExam(models.Model):
@@ -34,23 +34,11 @@ class MammogramExam(models.Model):
     itype = models.CharField(
         max_length=9,
         choices = Status.choices,
-        default = Status.PENDING)
+        default = Status.PENDENTE)
     acceptance_term = models.BooleanField(default=False)
     user_ip = models.GenericIPAddressField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to="mammograms/", null=True, blank=True)
 
     def __str__(self):
         return f"Exame - {self.patient.full_name} {self.exam_date} {self.itype}"
-
-class MammogramImage(models.Model):
-    exam = models.ForeignKey(
-        MammogramExam,
-        on_delete=models.CASCADE,
-        related_name="images"
-    )
-
-    image = models.ImageField(upload_to="mammograms/")
-    uploaded_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Image for exam {self.exam.id}"

@@ -1,0 +1,30 @@
+{% extends "baseexam.html" %}
+
+{% block content %}
+     <a href="{% url 'exams.create' %}" class="btn create">Novo Exame</a>
+{% for exams in dados %}
+
+  <div class="container">
+    <div class="custom-card">
+        <div class="card-content">
+            <h3 class="card-title">Id do Paciente: {{ exams.patient_id }}</h3>
+            <span class="card-subtitle">Id da Instituição:{{ exams.local_id }}</span>
+            <p class="card-text">Status do Exame: {{ exams.itype }}</p>
+            <p class="card-text">Resultado do Exame: {{ exams.result }}</p>
+            
+            <div class="card-actions">
+                <a href="{% url 'exams.edit' exams.id %}" class="btn edit">Editar</a>
+                <a href="{% url 'exams.delete' exams.id %}" class="btn delete">Deletar</a>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endfor %}
+
+{% endblock%}
+    
+
+
+
+
+
