@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login as auth_login
 
 
 def cadastro(request):
@@ -22,7 +23,21 @@ def cadastro(request):
 
 
 def login(request):
- return render(request, 'login.html')
+ if request.method == 'GET':
+     return render(request, 'login.html')
+ else:
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+  
+    user = authenticate(request, username=username, password=password)
+  
+    if user is not None:
+        auth_login(request, user)
+        return HttpResponse('Login realizado com sucesso!')
+    else:
+        return HttpResponse('Credenciais inválidas. Tente novamente.')
 
 def home(request):
- return render(request, 'home.html')
+ if request.user.is_authenticated():
+   return render(request, 'home.html')
+ return HttpResponse('Você precisa estar logado para acessar esta página.')  
