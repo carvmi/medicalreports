@@ -22,6 +22,7 @@ Caso o usuário concorde, o laudo poderá ser impresso em PDF ou impressora. O l
 <img width="1915" height="946" alt="image" src="https://github.com/user-attachments/assets/aec7f1a5-a28b-4b31-ae13-0386f8ad25ca" />
 
 ### Login 
+O requisito de "Acesso" foi aplicado nas views de exams, institution, medprofiles e patients para bloquear o acesso de usuários não autenticados. Foi utilizado "from django.contrib.auth.decorators import login_required" e "@login_required(login_url='/login/')" para retornar para a página de login.
 <img width="1911" height="939" alt="image" src="https://github.com/user-attachments/assets/682972c3-ba85-472a-bc86-9cfc738fff0c" />
 
 ### Cadastro 
