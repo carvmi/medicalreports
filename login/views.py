@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 
-
 def cadastro(request):
  if request.method == 'GET':
      return render(request, 'register.html') 
@@ -38,6 +37,4 @@ def login(request):
         return HttpResponse('Credenciais inválidas. Tente novamente.')
 
 def home(request):
- if request.user.is_authenticated():
-   return render(request, 'home.html')
- return HttpResponse('Você precisa estar logado para acessar esta página.')  
+  return render(request, 'home.html')  

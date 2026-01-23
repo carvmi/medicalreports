@@ -1,16 +1,20 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import MammogramExamForm
 from exams.models import MammogramExam
-
+from django.contrib.auth.decorators import login_required
+@login_required(login_url='/login/')
 def view(request):
-    dados = MammogramExam.objects.all()
-    return render(
+    if request.user.is_authenticated:
+     dados = MammogramExam.objects.all()
+     return render(
         request,
         'list.html',
         {
             'dados':dados,
         }
-    ) 
+     ) 
+    return HttpResponse('Você precisa estar logado para acessar esta página.')
 
 def create(request):
  form = MammogramExamForm()
