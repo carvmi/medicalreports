@@ -35,9 +35,23 @@ Caso o usuário concorde, o laudo poderá ser impresso em PDF ou impressora. O l
  - 'login' - Permite seja feito um POST, autenticando o usuário na plataforma
 - Exams: 'add', 'edit/id', 'delete/id'
  - 'exams/add' - Envia a imagem do exame para um bucket e o local de armazenamento da imagem e os metadados do exame para o banco de dados
- - 'exams/edit' - Pega os dados de um exame específico, através do id, e permite que seja feito um POST alterando um ou mais dados do exame no banco
- - 'exams/delete' - Deleta um exame existente no banco com base no id
-- 
+ - 'exams/edit/id' - Pega os dados de um exame específico, através do id, e permite que seja feito um POST alterando um ou mais dados do exame no banco
+ - 'exams/delete/id' - Deleta um exame existente no banco com base no id
+- Institution: 'add', 'edit/id', 'delete/id', 'address/create'
+ - 'institution/add' - Envia os dados de uma nova instituição para o banco de dados
+ - 'institution/edit/id' - Pega os dados de uma instituição específica, através do id, e permite que seja feito um POST alterando um ou mais dados da instituição no banco
+ - 'institution/delete/id' - Deleta uma instituição existente no banco com base no id 
+ - 'address/create' - Envia os dados de um novo endereço para o banco de dados
+- Medprofiles: 'add', 'edit/id', 'delete/id'
+ - 'medprofiles/add' - Envia os dados de um novo perfil médico para o banco de dados
+ - 'medprofiles/edit/id' - Pega os dados de um perfil médico específico, através do id, e permite que seja feito um POST alterando um ou mais dados da instituição no banco 
+ - 'medprofiles/delete/id' - Deleta um perfil médico existente no banco com base no id
+- Patient: 'add', 'edit/id', 'delete/id' 
+ - 'patient/add' - Envia os dados de um novo paciente para o banco de dados
+ - 'patient/edit/id' - Pega os dados de um paciente específico, através do id, e permite que seja feito um POST alterando um ou mais dados da instituição no banco
+ - 'patient/delete/id' - Deleta um paciente existente no banco com base no id
+
+
 
 ## Templates
 ### Homepage
