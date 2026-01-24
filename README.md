@@ -18,6 +18,7 @@ Caso o usuário concorde, o laudo poderá ser impresso em PDF ou impressora. O l
 - Medprofiles e Institution - Many to Many (Muitos para muitos)
 - Patient e Exams - One to Many (Um para muitos)
 
+
 ### Rotas da Aplicação Web FullStack (GET do front)
 - Rota home: retorna o template home.html
 - Rota eviews: retorna o template list.html com os dados de MammogramExam
