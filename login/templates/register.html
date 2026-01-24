@@ -5,6 +5,13 @@
 <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Insira suas credenciais para acessar o prontuário.</p>
 </div>
 <div class="mb-8">
+    {% if messages %}
+  {% for message in messages %}
+    <div class="mb-4 rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-700">
+        {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
 <form method="post">
     <div class="p-4 bg-slate-50 dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden group hover:border-primary/50 transition-colors">
 <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>

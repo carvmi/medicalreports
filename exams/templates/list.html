@@ -1,20 +1,25 @@
 {% extends "baseexam.html" %}
 
 {% block content %}
-     <a href="{% url 'exams.create' %}" class="btn create">Novo Exame</a>
+     <a href="{% url 'exams.ecreate' %}" class="flex-1 text-center px-4 py-2 rounded-lg bg-green-600 text-white text-sm font-medium hover:bg-green-700 transition">Novo Exame</a>
+     <h1 class="text-2xl font-bold mb-6 mt-4">Lista de Exames</h1>
 {% for exams in dados %}
 
-  <div class="container">
-    <div class="custom-card">
-        <div class="card-content">
-            <h3 class="card-title">Id do Paciente: {{ exams.patient_id }}</h3>
-            <span class="card-subtitle">Id da Instituição:{{ exams.local_id }}</span>
-            <p class="card-text">Status do Exame: {{ exams.itype }}</p>
-            <p class="card-text">Resultado do Exame: {{ exams.result }}</p>
-            
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-white dark:bg-surface-dark rounded-xl shadow-lg hover:shadow-xl transition overflow-hidden">
+        <div class="h-48 bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+            <img src="IMAGEM_AQUI" alt="Exame"
+                     class="max-h-full object-contain">
+            </div>
+            <div class="p-5 space-y-2">
+                <h3 class="text-lg font-semibold">Id do Paciente: {{ exams.patient_id }}</h3>
+            <span class="text-sm text-slate-500 dark:text-slate-400">Id da Instituição:{{ exams.local_id }}</span>
+            <p class="text-sm">Status do Exame: <span class="font-medium">{{ exams.itype }}</span></p>
+            <p class="text-sm">Resultado do Exame:<span class="font-medium"> {{ exams.result }}</span></p>
+
             <div class="card-actions">
-                <a href="{% url 'exams.edit' exams.id %}" class="btn edit">Editar</a>
-                <a href="{% url 'exams.delete' exams.id %}" class="btn delete">Deletar</a>
+                <a href="{% url 'exams.eedit' exams.id %}" class="flex-1 text-center px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-hover transition">Editar</a>
+                <a href="{% url 'exams.edelete' exams.id %}" class="flex-1 text-center px-4 py-2 rounded-lg bg-red-600 text-white text-sm font-medium hover:bg-red-700 transition">Deletar</a>
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@ from .forms import MammogramExamForm
 from exams.models import MammogramExam
 from django.contrib.auth.decorators import login_required
 @login_required(login_url='/login/')
-def view(request):
+def eview(request):
     if request.user.is_authenticated:
      dados = MammogramExam.objects.all()
      return render(
@@ -16,13 +16,13 @@ def view(request):
      ) 
     return HttpResponse('Você precisa estar logado para acessar esta página.')
 
-def create(request):
+def ecreate(request):
  form = MammogramExamForm()
  if request.method == 'POST':
   form = MammogramExamForm(request.POST)
   if form.is_valid():
    form.save()
-   return redirect('exams.view') 
+   return redirect('exams.eview') 
  return render(request, 'form.html', {'form': form})
 
 def get_client_ip(request):
@@ -33,7 +33,7 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
-def store(request):
+def estore(request):
     if request.method == 'POST':
         form = MammogramExamForm(request.POST)
         if form.is_valid():
@@ -42,19 +42,19 @@ def store(request):
             exam.save()
             return redirect('exams.view')
 
-    return redirect('exams.create')
+    return redirect('exams.ecreate')
 
-def edit(request, id):
+def eedit(request, id):
    exams = get_object_or_404(MammogramExam, pk=id)
    form = MammogramExamForm(instance=exams)
    if request.method == "POST":
     form = MammogramExamForm(request.POST, instance=exams)
     if form.is_valid():
      form.save()
-     return redirect('exams.view')
-   return render(request, 'instedit.html', {'form': form, 'exams': exams})
+     return redirect('exams.eview')
+   return render(request, 'edit.html', {'form': form, 'exams': exams})
 
-def delete(request, id):
+def edelete(request, id):
     exams = get_object_or_404(MammogramExam, pk=id)
     exams.delete()
-    return redirect('exams.view')
+    return redirect('exams.eview')

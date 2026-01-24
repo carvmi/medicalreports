@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
+from django.contrib import messages
 
 def cadastro(request):
  if request.method == 'GET':
@@ -13,12 +14,14 @@ def cadastro(request):
 
    user = User.objects.filter(username=username).first()
 
-   if user:
-     return HttpResponse('Usuário já existe')
-   
+   if User.objects.filter(username=username).exists():
+     messages.error(request, "Usuário já existe.")
+     return render(request, "login.html")
+
    user = User.objects.create_user(username=username, email=email, password=password)
    user.save()
-   return HttpResponse('Usuário cadastrado com sucesso!')
+   messages.error(request, "Usuário cadastrado com sucesso.")
+   return render(request, "register.html")
 
 
 def login(request):
@@ -32,9 +35,10 @@ def login(request):
   
     if user is not None:
         auth_login(request, user)
-        return HttpResponse('Login realizado com sucesso!')
+        return redirect('exams.eview')
     else:
-        return HttpResponse('Credenciais inválidas. Tente novamente.')
+        messages.error(request, "Usuário ou senha inválidos.")
+        return render(request, "login.html")
 
 def home(request):
   return render(request, 'home.html')  

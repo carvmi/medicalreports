@@ -1,137 +1,92 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html class="dark" lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empresas</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        textarea {
-            height: 80px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .required {
-            color: red;
-        }
-        .help-text {
-            font-size: 12px;
-            color: #666;
-            margin-top: 2px;
-        }
+    <title>MamoIA - Exames de Mamografia</title>
 
-/* O Card em si */
-.custom-card {
-    width: 300px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden; /* Garante que a imagem não saia das bordas arredondadas */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    background-color: #fff;
-    transition: transform 0.2s;
-}
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-.custom-card:hover {
-    transform: translateY(-5px); /* Efeito de flutuar ao passar o mouse */
-}
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 
-/* Área da Imagem */
-.card-image img {
-    width: 100%;
-    height: 200px;
-    object-fit: contain;
-    background-color: #f9f9f9;
-    border-bottom: 1px solid #eee;
-}
-
-/* Conteúdo interno */
-.card-content {
-    padding: 15px;
-}
-
-.card-title {
-    margin: 0 0 10px 0;
-    font-size: 1.25rem;
-    color: #333;
-}
-
-.card-subtitle {
-    display: block;
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-}
-
-.card-text {
-    font-size: 0.95rem;
-    color: #444;
-}
-
-/* Botões */
-.card-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.btn {
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    text-align: center;
-    flex: 1; /* Faz os botões dividirem o espaço igualmente */
-}
-
-.edit { background-color: #007bff; color: white; }
-.delete { background-color: #dc3545; color: white; }
-.create { background-color: #28a745; color: white; margin: 20px; display: inline-block; }
-    </style>
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0891b2",
+                        "primary-hover": "#0e7490",
+                        "background-light": "#f0f9ff",
+                        "background-dark": "#0f172a",
+                        "surface-dark": "#1e293b"
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    {% block content %}
-    {% endblock %}
-    
+
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen antialiased">
+
+    <!-- Header -->
+    <header class="border-b border-slate-200 dark:border-slate-700">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary text-3xl">
+                local_hospital
+            </span>
+            <h1 class="text-xl font-semibold tracking-wide">
+                MamoIA
+            </h1>
+        </div>
+
+         <!-- Navegação -->
+            <nav class="hidden md:flex flex-1 justify-center items-center gap-3">
+                <a href="{% url 'inst.iview' %}"
+                   class="px-4 py-2 rounded-lg text-sm font-medium
+              bg-slate-100 dark:bg-slate-800
+              text-slate-700 dark:text-slate-200
+              border border-slate-200 dark:border-slate-700
+              hover:bg-primary hover:text-white hover:border-primary
+              transition">
+                    Instituições
+                </a>
+
+                <a href="{% url 'p.view' %}"
+                   class="px-4 py-2 rounded-lg text-sm font-medium
+              bg-slate-100 dark:bg-slate-800
+              text-slate-700 dark:text-slate-200
+              border border-slate-200 dark:border-slate-700
+              hover:bg-primary hover:text-white hover:border-primary
+              transition">
+                    Pacientes
+                </a>
+
+                <a href="{% url 'med.view' %}"
+                   class="px-4 py-2 rounded-lg text-sm font-medium
+              bg-slate-100 dark:bg-slate-800
+              text-slate-700 dark:text-slate-200
+              border border-slate-200 dark:border-slate-700
+              hover:bg-primary hover:text-white hover:border-primary
+              transition">
+                    Médicos
+                </a>
+            </nav>
+        </div>
+
+    </header>
+
+    <!-- Conteúdo -->
+    <main class="max-w-7xl mx-auto px-6 py-10">
+        {% block content %}
+        {% endblock %}
+    </main>
 </body>
 </html>

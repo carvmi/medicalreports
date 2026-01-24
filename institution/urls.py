@@ -1,10 +1,10 @@
 from django.urls import include, path
-from institution.views import view, create, edit, delete, adcreate
+from institution.views import iview, icreate, iedit, idelete, adcreate
 
 urlpatterns = [
-    path("add", create, name='inst.create'),
-    path("", view, name='inst.view'),
-    path("edit/<int:id>", edit, name='inst.edit'),
+    path("add", icreate, name='inst.icreate'),
+    path("", iview, name='inst.iview'),
+    path("edit/<int:id>", iedit, name='inst.iedit'),
     path("address/create", adcreate, name='inst.adcreate'),
-    path("delete/<int:id>", delete, name='inst.delete'),
+    path("delete/<int:id>", idelete, name='inst.idelete'),
 ]

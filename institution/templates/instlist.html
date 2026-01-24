@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-     <a href="{% url 'inst.create' %}" class="btn create">Nova Empresa</a>
+     <a href="{% url 'inst.icreate' %}" class="btn create">Nova Empresa</a>
      <a href="{% url 'inst.adcreate' %}" class="btn create">Novo Endereço Físico</a>
 {% for institution in dados %}
 
@@ -17,8 +17,8 @@
             <p class="card-text">{{ institution.email }}</p>
             
             <div class="card-actions">
-                <a href="{% url 'inst.edit' institution.id %}" class="btn edit">Editar</a>
-                <a href="{% url 'inst.delete' institution.id %}" class="btn delete">Deletar</a>
+                <a href="{% url 'inst.iedit' institution.id %}" class="btn edit">Editar</a>
+                <a href="{% url 'inst.idelete' institution.id %}" class="btn delete">Deletar</a>
             </div>
         </div>
     </div>

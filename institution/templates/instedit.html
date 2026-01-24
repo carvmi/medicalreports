@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container">
-        <form action="{% url 'inst.edit' inst.id %}" method="post"> 
+        <form action="{% url 'inst.iedit' inst.id %}" method="post"> 
             {% csrf_token %}
 
            {{form.as_p}}
