@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from medprofiles.models import HealthProfessional
 from .forms import MedForm
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='/login/')
 def view(request):
     med = HealthProfessional.objects.all()
     return render(

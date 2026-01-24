@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from institution.models import Institution, Address
 from .forms import InstForm, AddressForm
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='/login/')
 def iview(request):
     dados = Institution.objects.all()
     return render(

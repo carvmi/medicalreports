@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import MammogramExamForm
 from exams.models import MammogramExam
 from django.contrib.auth.decorators import login_required
+
 @login_required(login_url='/login/')
 def eview(request):
     if request.user.is_authenticated:
@@ -15,6 +16,7 @@ def eview(request):
         }
      ) 
     return HttpResponse('Você precisa estar logado para acessar esta página.')
+    
 
 def ecreate(request):
  form = MammogramExamForm()

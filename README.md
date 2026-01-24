@@ -8,14 +8,29 @@ Após realizado o login, o usuário deve conseguir escolher uma imagem de mamogr
 ### Laudo
 Caso o usuário concorde, o laudo poderá ser impresso em PDF ou impressora. O laudo apresenta o nome completo do usuário, intituição e registro profissional, além da afirmação que o usuário concorda com o resultado gerado pela máquina. A aparência do laudo pode ser configurada previamente, exibindo um cabeçalho com o nome, marca e o endereço físico e eletrônico da instituição. Essa configuração é carregada do banco de dados logo após o usuário se logar. 
 
-## Padrão do Django
+### Padrão do Django
 - O Django segue o padrão MVT, o que significa que tem três arquivos principais: Models, Views e Templates. 
 - Models: Onde gerencia o banco de dados
 - Views: Todas as funções python responsáveis por gerenciar o processamento das URLs (é necessário importar as views no arquivos "urls.py")
 - Templates: arquivos html
+- Formulários: Uso de Django Forms para criação automática dos campos a serem cadastrados e editados na plataforma, conforme definido no models/banco de dados 
 ### Relacionamentos
 - Medprofiles e Institution - Many to Many (Muitos para muitos)
-- Patient e Mammogram - One to Many (Um para muitos)
+- Patient e Exams - One to Many (Um para muitos)
+
+### Rotas da Aplicação Web FullStack (GET do front)
+- Rota home: retorna o template home.html
+- Rota eviews: retorna o template list.html com os dados de MammogramExam
+- 
+### Endpoints da Aplicação (POST)
+- Login: 'cadastro/' e 'login/'
+ - 'cadastro/' - Permite seja feito um POST, enviando um novo usuário para o banco de dados. 
+ - 'login' - Permite seja feito um POST, autenticando o usuário na plataforma
+- Exams: 'add', 'edit/id', 'delete/id'
+ - 'exams/add' - Envia a imagem do exame para um bucket e o local de armazenamento da imagem e os metadados do exame para o banco de dados
+ - 'exams/edit' - Pega os dados de um exame específico, através do id, e permite que seja feito um POST alterando um ou mais dados do exame no banco
+ - 'exams/delete' - Deleta um exame existente no banco com base no id
+- 
 
 ## Templates
 ### Homepage
