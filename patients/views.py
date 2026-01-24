@@ -4,7 +4,7 @@ from .forms import PatientForm
 from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/login/')
-def view(request):
+def pview(request):
     dados = Patient.objects.all()
     return render(
         request,
@@ -14,26 +14,26 @@ def view(request):
         }
     ) 
 
-def create(request):
+def pcreate(request):
  form = PatientForm()
  if request.method == 'POST':
   form = PatientForm(request.POST)
   if form.is_valid():
    form.save()
-   return redirect('view') 
+   return redirect('pview') 
  return render(request, 'pform.html', {'form': form})
  
-def edit(request, id):
+def pedit(request, id):
    patient = get_object_or_404(Patient, pk=id)
    form = PatientForm(instance=patient)
    if request.method == "POST":
     form = PatientForm(request.POST, instance=patient)
     if form.is_valid():
      form.save()
-     return redirect('view')
+     return redirect('pview')
    return render(request, 'pedit.html', {'form': form, 'patient': patient})
 
-def delete(request, id):
+def pdelete(request, id):
     patient = get_object_or_404(Patient, pk=id)
     patient.delete()
     return redirect('view')

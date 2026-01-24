@@ -1,9 +1,9 @@
 from django.urls import include, path
-from patients.views import view, create, edit, delete
+from patients.views import pview, pcreate, pedit, pdelete
 
 urlpatterns = [
-    path("add", create, name='p.create'),
-    path("", view, name='p.view'),
-    path("edit/<int:id>", edit, name='p.edit'),
-    path("delete/<int:id>", delete, name='p.delete'),
+    path("add", pcreate, name='p.create'),
+    path("", pview, name='p.view'),
+    path("edit/<int:id>", pedit, name='p.edit'),
+    path("delete/<int:id>", pdelete, name='p.delete'),
 ]

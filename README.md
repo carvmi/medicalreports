@@ -25,7 +25,10 @@ Caso o usuário concorde, o laudo poderá ser impresso em PDF ou impressora. O l
 ### Rotas da Aplicação Web FullStack (GET do front)
 - Rota home: retorna o template home.html
 - Rota eviews: retorna o template list.html com os dados de MammogramExam
-- 
+- Rota iview: retorna o template instlist.html com os dados de Institution
+- Rota view: retorna o template medlist.html com os dados de Medprofiles
+- Rota pview: retorna o template plist.html com os dados de Patient
+
 ### Endpoints da Aplicação (POST)
 - Login: 'cadastro/' e 'login/'
  - 'cadastro/' - Permite seja feito um POST, enviando um novo usuário para o banco de dados. 
