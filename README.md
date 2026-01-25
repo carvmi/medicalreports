@@ -53,6 +53,8 @@ Caso o usuário concorde, o laudo poderá ser impresso em PDF ou impressora. O l
 
 ### Exportação PDF
 Para a exportação do laudo em PDF, foi importado o ReportLab na views de exams. Assim, o laudo retorna como profissional o profissional que está logado na ferramenta, o IP que foi gerado no cadastro do exame, a logo enviada no cadastro da instituição, informações do paciente, o termo de aceitação. 
+<img width="1610" height="867" alt="image" src="https://github.com/user-attachments/assets/afe66293-dfc2-4282-bece-93c67c4e98b6" />
+
 
 ## Templates
 ### Homepage
