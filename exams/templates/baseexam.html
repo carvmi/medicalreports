@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="dark" lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -38,52 +38,43 @@
 
     <!-- Header -->
     <header class="border-b border-slate-200 dark:border-slate-700">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center gap-3">
-            <span class="material-symbols-outlined text-primary text-3xl">
-                local_hospital
-            </span>
-            <h1 class="text-xl font-semibold tracking-wide">
-                MamoIA
-            </h1>
-        </div>
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center gap-6">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary text-3xl">
+                    local_hospital
+                </span>
+                <h1 class="text-xl font-semibold tracking-wide">
+                    MamoIA
+                </h1>
+            </div>
 
-         <!-- Navegação -->
+            <!-- Navegacao -->
             <nav class="hidden md:flex flex-1 justify-center items-center gap-3">
                 <a href="{% url 'inst.iview' %}"
-                   class="px-4 py-2 rounded-lg text-sm font-medium
-              bg-slate-100 dark:bg-slate-800
-              text-slate-700 dark:text-slate-200
-              border border-slate-200 dark:border-slate-700
-              hover:bg-primary hover:text-white hover:border-primary
-              transition">
-                    Instituições
+                   class="px-4 py-2 rounded-lg text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-primary hover:text-white hover:border-primary transition">
+                    Instituicoes
                 </a>
 
                 <a href="{% url 'p.view' %}"
-                   class="px-4 py-2 rounded-lg text-sm font-medium
-              bg-slate-100 dark:bg-slate-800
-              text-slate-700 dark:text-slate-200
-              border border-slate-200 dark:border-slate-700
-              hover:bg-primary hover:text-white hover:border-primary
-              transition">
+                   class="px-4 py-2 rounded-lg text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-primary hover:text-white hover:border-primary transition">
                     Pacientes
                 </a>
 
                 <a href="{% url 'med.view' %}"
-                   class="px-4 py-2 rounded-lg text-sm font-medium
-              bg-slate-100 dark:bg-slate-800
-              text-slate-700 dark:text-slate-200
-              border border-slate-200 dark:border-slate-700
-              hover:bg-primary hover:text-white hover:border-primary
-              transition">
-                    Médicos
+                   class="px-4 py-2 rounded-lg text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-primary hover:text-white hover:border-primary transition">
+                    Medicos
+                </a>
+
+                <a href="{% url 'exams.eview' %}"
+                   class="px-4 py-2 rounded-lg text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-primary hover:text-white hover:border-primary transition">
+                    Exames
                 </a>
             </nav>
         </div>
 
     </header>
 
-    <!-- Conteúdo -->
+    <!-- Conteudo -->
     <main class="max-w-7xl mx-auto px-6 py-10">
         {% block content %}
         {% endblock %}

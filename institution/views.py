@@ -17,7 +17,7 @@ def iview(request):
 def icreate(request):
  form = InstForm()
  if request.method == 'POST':
-  form = InstForm(request.POST)
+  form = InstForm(request.POST, request.FILES)
   if form.is_valid():
    form.save()
    return redirect('inst.iview') 
@@ -37,7 +37,7 @@ def iedit(request, id):
    inst = get_object_or_404(Institution, pk=id)
    form = InstForm(instance=inst)
    if request.method == "POST":
-    form = InstForm(request.POST, instance=inst)
+    form = InstForm(request.POST, request.FILES, instance=inst)
     if form.is_valid():
      form.save()
      return redirect('inst.iview')
@@ -46,5 +46,5 @@ def iedit(request, id):
 def idelete(request, id):
     inst = get_object_or_404(Institution, pk=id)
     inst.delete()
-    return redirect('inst.view')
+    return redirect('inst.iview')
  

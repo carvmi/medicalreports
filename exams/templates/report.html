@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Laudo</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 16mm;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        color: #0f172a;
+        font-size: 12px;
+      }
+      .page {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+      }
+      .brand {
+        display: table-cell;
+        width: 16%;
+        vertical-align: top;
+        padding-right: 10mm;
+      }
+      .brand .logo-box {
+        width: 100%;
+        border: 1px solid #e2e8f0;
+        padding: 6mm 4mm;
+        text-align: center;
+      }
+      .brand img {
+        max-width: 100%;
+        height: auto;
+      }
+      .content {
+        display: table-cell;
+        width: 84%;
+        vertical-align: top;
+      }
+      .header {
+        display: table;
+        width: 100%;
+      }
+      .header .left,
+      .header .right {
+        display: table-cell;
+        vertical-align: top;
+      }
+      .header .right {
+        text-align: right;
+        width: 45%;
+      }
+      .title {
+        margin: 10mm 0 6mm 0;
+        text-align: center;
+        font-size: 16px;
+        letter-spacing: 0.6px;
+      }
+      .divider {
+        height: 1px;
+        background: #111827;
+        margin: 6mm 0;
+      }
+      .info-box {
+        border: 1px solid #e2e8f0;
+        padding: 4mm;
+        border-radius: 4mm;
+        background: #f8fafc;
+      }
+      .info-row {
+        display: table;
+        width: 100%;
+        margin-bottom: 3mm;
+      }
+      .info-row .col {
+        display: table-cell;
+        width: 50%;
+      }
+      .label {
+        color: #64748b;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+      .section {
+        margin-top: 6mm;
+      }
+      .section h3 {
+        margin: 0 0 2mm 0;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+      .signature {
+        margin-top: 10mm;
+      }
+      .signature-line {
+        margin-top: 12mm;
+        border-bottom: 1px solid #0f172a;
+        height: 1px;
+        width: 70%;
+      }
+      .muted {
+        color: #475569;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <aside class="brand">
+        <div class="logo-box">
+          {% if institution and institution.logo %}
+            <img src="{{ institution.logo.url }}" alt="Logo" />
+          {% else %}
+            <div class="muted">Sem logo</div>
+          {% endif %}
+        </div>
+      </aside>
+
+      <main class="content">
+        <div class="header">
+          <div class="left">
+            <div style="font-size: 14px; font-weight: bold;">
+              {% if institution %}{{ institution.name }}{% else %}Instituição{% endif %}
+            </div>
+            <div class="muted">
+              {% if institution and institution.endereco_fisico %}
+                {{ institution.endereco_fisico }}
+              {% endif %}
+            </div>
+            <div class="muted">
+              {% if institution %}{{ institution.email }} | {{ institution.phone }}{% endif %}
+            </div>
+          </div>
+          <div class="right">
+            <div class="label">Profissional</div>
+            <div style="font-weight: bold;">{{ professional_name }}</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="title">LAUDO DE MAMOGRAFIA DIGITAL</div>
+
+        <div class="info-box">
+          <div class="info-row">
+            <div class="col">
+              <div class="label">Paciente</div>
+              <div>{{ patient.full_name }}</div>
+            </div>
+            <div class="col">
+              <div class="label">Data de nascimento</div>
+              <div>{{ patient.birth_date|date:"d/m/Y" }}</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="col">
+              <div class="label">Exame</div>
+              <div>{{ exam.exam_date|date:"d/m/Y" }}</div>
+            </div>
+            <div class="col">
+              <div class="label">Status</div>
+              <div>{{ exam.itype }}</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="col">
+              <div class="label">IP do usuário</div>
+              <div>{{ exam.user_ip|default:"-" }}</div>
+            </div>
+            <div class="col">
+              <div class="label">Aceite</div>
+              <div>{% if exam.acceptance_term %}Sim{% else %}Não{% endif %}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Descrição</h3>
+          <div>{{ exam.description|default:"-" }}</div>
+        </div>
+
+        <div class="section">
+          <h3>Resultado</h3>
+          <div>{{ exam.result }}</div>
+        </div>
+
+        <div class="section">
+          <h3>Termo de aceitação</h3>
+          <div>
+            Análise realizada com apoio de Inteligência Artificial, sem substituição
+            do julgamento médico. Resultado validado e responsabilidade assumida pelo
+            médico responsável.
+          </div>
+        </div>
+
+        <div class="signature">
+          <div class="label">Assinatura do responsável</div>
+          <div class="signature-line"></div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

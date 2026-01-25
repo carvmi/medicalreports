@@ -1,34 +1,33 @@
-{% extends "base.html" %}
+﻿{% extends "baseexam.html" %}
 
 {% block content %}
-     <a href="{% url 'inst.icreate' %}" class="btn create">Nova Empresa</a>
-     <a href="{% url 'inst.adcreate' %}" class="btn create">Novo Endereço Físico</a>
-{% for institution in dados %}
+  <div class="flex flex-wrap items-center gap-3">
+    <a href="{% url 'inst.icreate' %}" class="px-4 py-2 rounded-lg bg-green-600 text-white text-sm font-medium hover:bg-green-700 transition">Nova Instituicao</a>
+    <a href="{% url 'inst.adcreate' %}" class="px-4 py-2 rounded-lg bg-green-600 text-white text-sm font-medium hover:bg-green-700 transition">Novo Endereco Fisico</a>
+  </div>
+  <h1 class="text-2xl font-bold mb-6 mt-4">Lista de Instituicoes</h1>
 
-  <div class="container">
-    <div class="custom-card">
-        <div class="card-image img">
-            {% load static %}
-            <img src="{{institution.logo}}" alt="Logo">
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for institution in dados %}
+      <div class="bg-white dark:bg-surface-dark rounded-xl shadow-lg hover:shadow-xl transition overflow-hidden">
+        <div class="h-48 bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+          {% if institution.logo %}
+            <img src="{{ institution.logo.url }}" alt="Logo" class="max-h-full object-contain">
+          {% else %}
+            <span class="text-sm text-slate-500 dark:text-slate-400">Sem logo</span>
+          {% endif %}
         </div>
-        <div class="card-content">
-            <h3 class="card-title">{{ institution.name }}</h3>
-            <span class="card-subtitle">{{ institution.site }}</span>
-            <p class="card-text">{{ institution.email }}</p>
-            
-            <div class="card-actions">
-                <a href="{% url 'inst.iedit' institution.id %}" class="btn edit">Editar</a>
-                <a href="{% url 'inst.idelete' institution.id %}" class="btn delete">Deletar</a>
-            </div>
+        <div class="p-5 space-y-2">
+          <h3 class="text-lg font-semibold">{{ institution.name }}</h3>
+          <span class="text-sm text-slate-500 dark:text-slate-400">{{ institution.site }}</span>
+          <p class="text-sm">{{ institution.email }}</p>
+          <div class="flex gap-2 pt-2">
+            <a href="{% url 'inst.iedit' institution.id %}" class="flex-1 text-center px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-hover transition">Editar</a>
+            <a href="{% url 'inst.idelete' institution.id %}" onclick="return confirm('Tem certeza que deseja deletar esta instituicao?');" class="flex-1 text-center px-4 py-2 rounded-lg bg-red-600 text-white text-sm font-medium hover:bg-red-700 transition">Deletar</a>
+          </div>
         </div>
-    </div>
-    </div>
-{% endfor %}
-
-{% endblock%}
-    
-
-
-
-
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
 
