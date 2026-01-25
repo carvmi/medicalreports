@@ -51,7 +51,8 @@ Caso o usuário concorde, o laudo poderá ser impresso em PDF ou impressora. O l
  - 'patient/edit/id' - Pega os dados de um paciente específico, através do id, e permite que seja feito um POST alterando um ou mais dados da instituição no banco
  - 'patient/delete/id' - Deleta um paciente existente no banco com base no id
 
-
+### Exportação PDF
+Para a exportação do laudo em PDF, foi importado o ReportLab na views de exams. Assim, o laudo retorna como profissional o profissional que está logado na ferramenta, o IP que foi gerado no cadastro do exame, a logo enviada no cadastro da instituição, informações do paciente, o termo de aceitação. 
 
 ## Templates
 ### Homepage
