@@ -14,7 +14,7 @@ class Patient(models.Model):
     # Identification
     full_name = models.CharField(max_length=150)
     birth_date = models.DateField()
-    sex = models.CharField(max_length=1, choices=SEX_CHOICES, default="N")
+    gender = models.CharField(max_length=1, choices=SEX_CHOICES, default="N")
     cpf = models.CharField(
         max_length=11,
         unique=True,
