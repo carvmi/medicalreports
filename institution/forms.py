@@ -4,7 +4,7 @@ from .models import Institution, Address
 class InstForm(forms.ModelForm):
     class Meta:
         model = Institution
-        fields = '__all__'
+        exclude = ("is_active", "deleted_at")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -18,7 +18,7 @@ class InstForm(forms.ModelForm):
 class AddressForm(forms.ModelForm):
     class Meta:
         model = Address
-        fields = '__all__'
+        exclude = ("is_active", "deleted_at")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

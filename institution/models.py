@@ -7,6 +7,8 @@ class Address(models.Model):
  cidade = models.CharField(max_length=60)
  uf = models.CharField(max_length=2)
  number = models.CharField(max_length=5, default = '0')
+ is_active = models.BooleanField(default=True)
+ deleted_at = models.DateTimeField(null=True, blank=True)
  def __str__ (self):
     return f'{self.bairro} - {self.cidade} - {self.uf} - {self.number} '
 
@@ -28,3 +30,5 @@ class Institution(models.Model):
     def __str__(self):
         return f'{self.itype} - {self.name}'
     logo = models.ImageField(upload_to='institution/static', null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)

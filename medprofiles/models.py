@@ -10,6 +10,8 @@ class HealthProfessional(models.Model):
     )
     specialization = models.CharField(max_length=120)
     professional_registration = models.CharField(max_length=50)
+    is_active = models.BooleanField(default=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.full_name

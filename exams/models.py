@@ -39,6 +39,8 @@ class MammogramExam(models.Model):
     user_ip = models.GenericIPAddressField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to="mammograms/", null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return f"Exame - {self.patient.full_name} {self.exam_date} {self.itype}"

@@ -4,7 +4,7 @@ from .models import HealthProfessional
 class MedForm(forms.ModelForm):
     class Meta:
         model = HealthProfessional
-        fields = '__all__'
+        exclude = ("is_active", "deleted_at")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

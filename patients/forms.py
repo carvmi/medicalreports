@@ -4,7 +4,7 @@ from .models import Patient
 class PatientForm(forms.ModelForm):
     class Meta:
         model = Patient
-        fields = '__all__'
+        exclude = ("is_active", "deleted_at")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

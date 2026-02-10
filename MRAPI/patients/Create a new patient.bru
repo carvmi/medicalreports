@@ -1,0 +1,30 @@
+meta {
+  name: Create a new patient
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://127.0.0.1:8000/api/patients/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "full_name": "Maria Silva",
+    "birth_date": "1985-10-12",
+    "gender": "F",
+    "cpf": "12345678901",
+    "phone": "81999999999",
+    "email": "maria@example.com",
+    "allergies": "Penicilina",
+    "pre_existing_conditions": "Hipertensão, Diabetes",
+    "notes": "Paciente em acompanhamento."
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
