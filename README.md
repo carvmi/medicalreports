@@ -20,7 +20,7 @@ Caso o usuário concorde, o laudo poderá ser impresso em PDF ou impressora. O l
 - Medprofiles e Exams - One to Many (Um para muitos)
 - Institution e Address - One to One (Um para um)
   
-<img width="1800" height="855" alt="Projeto_Integrador" src="https://github.com/user-attachments/assets/7608230a-8478-4b3a-95c7-e81541b2305c" />
+<img width="1800" height="855" alt="Projeto_Integrador" src="https://github.com/user-attachments/assets/40b66011-6926-4fa6-8a5e-304930c1e974" />
 
 ### Rotas da Aplicação Web FullStack (GET do front)
 - Rota home: retorna o template home.html
