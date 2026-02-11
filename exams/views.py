@@ -8,11 +8,12 @@ from reportlab.pdfgen import canvas
 from .forms import MammogramExamForm
 from exams.models import MammogramExam
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 @login_required(login_url='/login/')
 def eview(request):
     if request.user.is_authenticated:
-     dados = MammogramExam.objects.all()
+     dados = MammogramExam.objects.filter(is_active=True)
      return render(
         request,
         'list.html',
@@ -54,7 +55,7 @@ def estore(request):
     return redirect('exams.ecreate')
 
 def eedit(request, id):
-   exams = get_object_or_404(MammogramExam, pk=id)
+   exams = get_object_or_404(MammogramExam, pk=id, is_active=True)
    form = MammogramExamForm(instance=exams)
    if request.method == "POST":
     form = MammogramExamForm(request.POST, request.FILES, instance=exams)
@@ -64,8 +65,10 @@ def eedit(request, id):
    return render(request, 'edit.html', {'form': form, 'exams': exams})
 
 def edelete(request, id):
-    exams = get_object_or_404(MammogramExam, pk=id)
-    exams.delete()
+    exams = get_object_or_404(MammogramExam, pk=id, is_active=True)
+    exams.is_active = False
+    exams.deleted_at = timezone.now()
+    exams.save(update_fields=["is_active", "deleted_at"])
     return redirect('exams.eview')
 
 def _wrap_text(text, font_name, font_size, max_width):
@@ -86,7 +89,7 @@ def _wrap_text(text, font_name, font_size, max_width):
 
 @login_required(login_url='/login/')
 def exam_report_pdf(request, id):
-    exam = get_object_or_404(MammogramExam, pk=id)
+    exam = get_object_or_404(MammogramExam, pk=id, is_active=True)
     patient = exam.patient
     institution = exam.local
     professional_name = request.user.get_full_name() or request.user.get_username()
