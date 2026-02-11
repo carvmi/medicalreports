@@ -1,0 +1,28 @@
+meta {
+  name: Create a new exam
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://127.0.0.1:8000/api/exams/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "patient": 1,
+    "local": 5,
+    "exam_date": "2026-02-10",
+    "description": "Achado suspeito em quadrante superior.",
+    "result": "INDETERMINADO",
+    "itype": "PENDENTE",
+    "acceptance_term": false
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
