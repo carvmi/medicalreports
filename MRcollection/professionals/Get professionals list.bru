@@ -1,0 +1,16 @@
+meta {
+  name: Get professionals list
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://127.0.0.1:8000/api/medprofiles/
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

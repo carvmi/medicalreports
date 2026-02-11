@@ -1,0 +1,26 @@
+meta {
+  name: Create a new professional
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://127.0.0.1:8000/api/medprofiles/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "full_name": "Dr. João Souza",
+    "position": "Radiologista",
+    "specialization": "Mamografia",
+    "professional_registration": "CRM-PE 12345",
+    "institution": [5]
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

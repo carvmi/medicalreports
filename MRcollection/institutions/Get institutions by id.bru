@@ -1,15 +1,16 @@
 meta {
-  name: Get patient by id
+  name: Get institutions by id
   type: http
   seq: 2
 }
 
 get {
-  url: 
+  url: http://127.0.0.1:8000/api/institutions/id
   body: none
   auth: inherit
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }
