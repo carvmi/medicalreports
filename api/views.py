@@ -1,9 +1,11 @@
 import json
+from pathlib import Path
 
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User
-from django.http import JsonResponse, QueryDict
+from django.http import HttpResponse, JsonResponse, QueryDict
 from django.shortcuts import get_object_or_404
+from django.conf import settings
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 
@@ -169,6 +171,17 @@ def _soft_delete(instance):
     instance.save(update_fields=["is_active", "deleted_at"])
 
 
+def docs_api(request):
+    if request.method != "GET":
+        return _json_error("Metodo nao permitido.", status=405)
+
+    docs_path = Path(settings.BASE_DIR) / "MRAPI-documentation.html"
+    if not docs_path.exists():
+        return _json_error("Arquivo de documentacao nao encontrado.", status=404)
+
+    return HttpResponse(docs_path.read_text(encoding="utf-8"), content_type="text/html; charset=utf-8")
+
+
 @csrf_exempt
 def register_api(request):
     if request.method != "POST":
@@ -210,8 +223,19 @@ def login_api(request):
         return _json_error("Usuario ou senha invalidos.", status=401)
 
     auth_login(request, user)
+    token = request.session.session_key
+    if not token:
+        request.session.save()
+        token = request.session.session_key
     return JsonResponse(
-        {"data": {"id": user.id, "username": user.username, "email": user.email}},
+        {
+            "data": {
+                "id": user.id,
+                "username": user.username,
+                "email": user.email,
+                "token": token,
+            }
+        },
         status=200,
     )
 
