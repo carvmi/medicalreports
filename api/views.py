@@ -86,6 +86,7 @@ def address_to_dict(address):
         "cidade": address.cidade,
         "uf": address.uf,
         "number": address.number,
+        "is_active": address.is_active,
     }
 
 
@@ -100,6 +101,7 @@ def institution_to_dict(request, institution):
         "email": institution.email,
         "itype": institution.itype,
         "logo_url": _build_file_url(request, institution.logo),
+        "is_active": institution.is_active,
     }
 
 
@@ -117,6 +119,7 @@ def patient_to_dict(patient):
         "notes": patient.notes,
         "created_at": _datetime(patient.created_at),
         "updated_at": _datetime(patient.updated_at),
+        "is_active": patient.is_active,
     }
 
 
@@ -130,6 +133,7 @@ def professional_to_dict(professional):
         "institutions": [
             {"id": inst.id, "name": inst.name} for inst in professional.institution.all()
         ],
+        "is_active": professional.is_active,
     }
 
 
@@ -148,6 +152,7 @@ def exam_to_dict(request, exam):
         "user_ip": exam.user_ip,
         "created_at": _datetime(exam.created_at),
         "image_url": _build_file_url(request, exam.image),
+        "is_active": exam.is_active,
     }
 
 
@@ -230,9 +235,9 @@ def patients_api(request, id=None):
 
     if request.method == "GET":
         if id is None:
-            patients = Patient.objects.filter(is_active=True)
+            patients = Patient.objects.all()
             return JsonResponse({"data": [patient_to_dict(p) for p in patients]}, status=200)
-        patient = get_object_or_404(Patient, pk=id, is_active=True)
+        patient = get_object_or_404(Patient, pk=id)
         return JsonResponse({"data": patient_to_dict(patient)}, status=200)
 
     if request.method in {"POST", "PUT", "PATCH"}:
@@ -267,9 +272,9 @@ def addresses_api(request, id=None):
 
     if request.method == "GET":
         if id is None:
-            addresses = Address.objects.filter(is_active=True)
+            addresses = Address.objects.all()
             return JsonResponse({"data": [address_to_dict(a) for a in addresses]}, status=200)
-        address = get_object_or_404(Address, pk=id, is_active=True)
+        address = get_object_or_404(Address, pk=id)
         return JsonResponse({"data": address_to_dict(address)}, status=200)
 
     if request.method in {"POST", "PUT", "PATCH"}:
@@ -304,12 +309,12 @@ def institutions_api(request, id=None):
 
     if request.method == "GET":
         if id is None:
-            institutions = Institution.objects.filter(is_active=True)
+            institutions = Institution.objects.all()
             return JsonResponse(
                 {"data": [institution_to_dict(request, inst) for inst in institutions]},
                 status=200,
             )
-        institution = get_object_or_404(Institution, pk=id, is_active=True)
+        institution = get_object_or_404(Institution, pk=id)
         return JsonResponse({"data": institution_to_dict(request, institution)}, status=200)
 
     if request.method in {"POST", "PUT", "PATCH"}:
@@ -344,11 +349,11 @@ def medprofiles_api(request, id=None):
 
     if request.method == "GET":
         if id is None:
-            professionals = HealthProfessional.objects.filter(is_active=True)
+            professionals = HealthProfessional.objects.all()
             return JsonResponse(
                 {"data": [professional_to_dict(p) for p in professionals]}, status=200
             )
-        professional = get_object_or_404(HealthProfessional, pk=id, is_active=True)
+        professional = get_object_or_404(HealthProfessional, pk=id)
         return JsonResponse({"data": professional_to_dict(professional)}, status=200)
 
     if request.method in {"POST", "PUT", "PATCH"}:
@@ -383,9 +388,9 @@ def exams_api(request, id=None):
 
     if request.method == "GET":
         if id is None:
-            exams = MammogramExam.objects.filter(is_active=True)
+            exams = MammogramExam.objects.all()
             return JsonResponse({"data": [exam_to_dict(request, e) for e in exams]}, status=200)
-        exam = get_object_or_404(MammogramExam, pk=id, is_active=True)
+        exam = get_object_or_404(MammogramExam, pk=id)
         return JsonResponse({"data": exam_to_dict(request, exam)}, status=200)
 
     if request.method in {"POST", "PUT", "PATCH"}:
