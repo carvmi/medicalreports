@@ -5,13 +5,9 @@ meta {
 }
 
 post {
-  url: http://127.0.0.1:8000/api/auth/login
+  url: {{baseUrl}}/api/auth/login
   body: json
   auth: inherit
-}
-
-params:query {
-  : 
 }
 
 body:json {
