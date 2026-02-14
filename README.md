@@ -86,9 +86,52 @@ O acesso a exames, instituicoes, medprofiles e patients é protegido com autenti
 py -3 manage.py migrate
 py -3 manage.py runserver 0.0.0.0:8000
 ```
-
 ## Testes
 
 ```bash
 py -3 manage.py test apps.exams -v 1
 ```
+
+## Execução com Docker
+
+### Pré-requisitos
+
+- Docker
+- Docker Compose
+
+### Configuração
+
+Criar um arquivo .env baseado no .env de exemplo
+### Subir em modo desenvolvimento
+
+```bash
+docker compose up --build
+```
+
+A aplicação ficará disponivel em `http://localhost:8000`.
+
+### Subir em modo producao (local)
+
+Antes, ajuste o `.env` com:
+
+- `DJANGO_SETTINGS_MODULE=config.settings.prod`
+- `DJANGO_SECRET_KEY=<valor-seguro>`
+- `DJANGO_ALLOWED_HOSTS=<hosts-validos>`
+
+Depois execute:
+
+```bash
+docker compose -f docker-compose.prod.yml up --build -d
+```
+
+### Parar containers
+
+```bash
+docker compose down
+docker compose -f docker-compose.prod.yml down
+```
+
+### Persistencia de dados
+
+- Banco SQLite: volume `sqlite_data` 
+- Uploads: volume `media_data` 

@@ -1,0 +1,28 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: medicalreports-web
+    env_file:
+      - .env
+    environment:
+      DJANGO_SETTINGS_MODULE: ${DJANGO_SETTINGS_MODULE:-config.settings.dev}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-localhost,127.0.0.1,0.0.0.0,[::1],*}
+      DJANGO_SQLITE_PATH: ${DJANGO_SQLITE_PATH:-/app/data/db.sqlite3}
+      DJANGO_TRUSTED_PROXY_IPS: ${DJANGO_TRUSTED_PROXY_IPS:-}
+      DJANGO_TRUST_PROXY_HEADERS: ${DJANGO_TRUST_PROXY_HEADERS:-0}
+    command: >
+      sh -c "mkdir -p /app/data &&
+      python manage.py migrate &&
+      python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - sqlite_data:/app/data
+      - media_data:/app/media
+      - ./:/app
+
+volumes:
+  sqlite_data:
+  media_data:
