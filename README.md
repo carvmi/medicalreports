@@ -1,73 +1,94 @@
-## Sistema de apoio ao diagnóstico do câncer de mama por análise de mamografias
-### Objetivo
-A solução permite que profissionais médicos tenham acesso aos protótipos de inteligência artificial para auxiliar no diagnóstico. Além disso, auxilia o Grupo de Pesquisas em Computação Biomédica, do Instituto do Complexo Econômico-Industrial da Saúde da UFPE, a validar as soluções atuais em desenvolvimento.
-### Acesso
-Para acesso ao sistema, o usuário precisa ser identificado via login. Conforme as exigências da Sociedade Brasileira de Informática em Saúde e da ANVISA para esse tipo de sistema, as ações desse usuário precisam também ser rastreadas e armazenas em arquivo de log.
-### Inteligência Artificial
-Após realizado o login, o usuário deve conseguir escolher uma imagem de mamografia previamente armazenada como arquivo. O sistema vai exibir uma visualização navegável da imagem em tela. Após seleção da região suspeita de lesão na mama, será habilitada a funcionalidade de análise automática, acionada por um botão. Ao acionar o botão, a imagem será enviada para uma API que a envia para máquina de aprendizado e retorna o resultado da classificação. A API retorna esse resultado para o front, que elabora uma prévia do laudo gerado pela IA para o usuário.
-### Laudo
-Caso o usuário concorde, o laudo poderá ser impresso em PDF ou impressora. O laudo apresenta o nome completo do usuário, intituição e registro profissional, além da afirmação que o usuário concorda com o resultado gerado pela máquina. A aparência do laudo pode ser configurada previamente, exibindo um cabeçalho com o nome, marca e o endereço físico e eletrônico da instituição. Essa configuração é carregada do banco de dados logo após o usuário se logar. 
+﻿# Medical Reports
 
-### Padrão do Django
-- O Django segue o padrão MVT, o que significa que tem três arquivos principais: Models, Views e Templates. 
-- Models: Onde gerencia o banco de dados
-- Views: Todas as funções python responsáveis por gerenciar o processamento das URLs (é necessário importar as views no arquivos "urls.py")
-- Templates: arquivos html
-- Formulários: Uso de Django Forms para criação automática dos campos a serem cadastrados e editados na plataforma, conforme definido no models/banco de dados 
-### Relacionamentos
-- Medprofiles e Institution - Many to Many (Muitos para muitos)
-- Patient e Exams - One to Many (Um para muitos)
-- Medprofiles e Exams - One to Many (Um para muitos)
-- Institution e Address - One to One (Um para um)
-  
+Aplicacao Django para cadastro e gerenciamento de dados clinicos de mamografia, com interface web e API JSON.
+
+## Funcionalidades implementadas
+
+- Autenticacao de usuario na interface web:
+- cadastro (`/cadastro/`)
+- login (`/login/`)
+- CRUD web para:
+- exames (`/exams/`)
+- pacientes (`/patients/`)
+- instituicoes e enderecos (`/institution/`)
+- perfis profissionais (`/medprofiles/`)
+- Soft delete nas entidades principais com `is_active` e `deleted_at`.
+- Upload de imagem do exame e logo da instituicao.
+- Exportacao de laudo em PDF para exames (`/exams/report/<id>`), contendo dados do paciente, instituicao, exame, aceite e IP registrado.
+- API JSON com autenticacao de sessao para:
+- auth (`/api/auth/register`, `/api/auth/login`, `/api/auth/me`)
+- patients (`/api/patients/`, `/api/patients/<id>/`)
+- institutions (`/api/institutions/`, `/api/institutions/<id>/`)
+- addresses (`/api/addresses/`, `/api/addresses/<id>/`)
+- medprofiles (`/api/medprofiles/`, `/api/medprofiles/<id>/`)
+- exams (`/api/exams/`, `/api/exams/<id>/`)
+- Endpoint de documentacao da API em HTML (`/api/docs`), carregado de `MRAPI-documentation.html`.
+
+## Regras implementadas para IP
+
+- O IP do exame e preenchido automaticamente no backend no momento de criacao.
+- O campo `user_ip` nao aparece nos formularios de criacao/edicao.
+- O IP e mostrado no PDF do laudo.
+- `X-Forwarded-For` so e aceito quando a requisicao vem de proxy confiavel (`DJANGO_TRUSTED_PROXY_IPS`).
+
+## Filtros de registros ativos
+
+- Listagens web usam apenas registros ativos.
+- No formulario de exame, os selects de `patient` e `local` exibem apenas opcoes ativas (`is_active=True`).
+
+## Estrutura do projeto
+
+- Apps Django em `apps/`:
+- `apps.login`
+- `apps.patients`
+- `apps.institution`
+- `apps.medprofiles`
+- `apps.exams`
+- `apps.api`
+- Configuracoes em `config/settings/`:
+- `base.py`
+- `dev.py`
+- `prod.py`
+
+## Relacionamentos implementados
+
+- `HealthProfessional` e `Institution`: many-to-many.
+- `Patient` e `MammogramExam`: one-to-many.
+- `Institution` e `Address`: one-to-one.
+
 <img width="1800" height="855" alt="Projeto_Integrador" src="https://github.com/user-attachments/assets/40b66011-6926-4fa6-8a5e-304930c1e974" />
 
-### Rotas da Aplicação Web FullStack (GET do front)
-- Rota home: retorna o template home.html
-- Rota eviews: retorna o template list.html com os dados de MammogramExam
-- Rota iview: retorna o template instlist.html com os dados de Institution
-- Rota view: retorna o template medlist.html com os dados de Medprofiles
-- Rota pview: retorna o template plist.html com os dados de Patient
+## Exportacao PDF
 
-### Endpoints da Aplicação (POST)
-#### Login: 'cadastro/' e 'login/'
- - 'cadastro/' - Permite seja feito um POST, enviando um novo usuário para o banco de dados. 
- - 'login' - Permite seja feito um POST, autenticando o usuário na plataforma
-#### Exams: 'add', 'edit/id', 'delete/id'
- - 'exams/add' - Envia a imagem do exame para um bucket e o local de armazenamento da imagem e os metadados do exame para o banco de dados
- - 'exams/edit/id' - Pega os dados de um exame específico, através do id, e permite que seja feito um POST alterando um ou mais dados do exame no banco
- - 'exams/delete/id' - Deleta um exame existente no banco com base no id
-#### Institution: 'add', 'edit/id', 'delete/id', 'address/create'
- - 'institution/add' - Envia os dados de uma nova instituição para o banco de dados
- - 'institution/edit/id' - Pega os dados de uma instituição específica, através do id, e permite que seja feito um POST alterando um ou mais dados da instituição no banco
- - 'institution/delete/id' - Deleta uma instituição existente no banco com base no id 
- - 'address/create' - Envia os dados de um novo endereço para o banco de dados
-#### Medprofiles: 'add', 'edit/id', 'delete/id'
- - 'medprofiles/add' - Envia os dados de um novo perfil médico para o banco de dados
- - 'medprofiles/edit/id' - Pega os dados de um perfil médico específico, através do id, e permite que seja feito um POST alterando um ou mais dados da instituição no banco 
- - 'medprofiles/delete/id' - Deleta um perfil médico existente no banco com base no id
-#### Patient: 'add', 'edit/id', 'delete/id' 
- - 'patient/add' - Envia os dados de um novo paciente para o banco de dados
- - 'patient/edit/id' - Pega os dados de um paciente específico, através do id, e permite que seja feito um POST alterando um ou mais dados da instituição no banco
- - 'patient/delete/id' - Deleta um paciente existente no banco com base no id
+A geracao de PDF e feita com ReportLab na app de exames.
 
-### Exportação PDF
-Para a exportação do laudo em PDF, foi importado o ReportLab na views de exams. Assim, o laudo retorna como profissional o profissional que está logado na ferramenta, o IP que foi gerado no cadastro do exame, a logo enviada no cadastro da instituição, informações do paciente, o termo de aceitação. (Obs: Imagens e dados fictícios para apresentação da solução)
 <img width="1610" height="867" alt="image" src="https://github.com/user-attachments/assets/afe66293-dfc2-4282-bece-93c67c4e98b6" />
 
+## Telas
 
-## Templates
 ### Homepage
+
 <img width="1915" height="946" alt="image" src="https://github.com/user-attachments/assets/aec7f1a5-a28b-4b31-ae13-0386f8ad25ca" />
 
-### Login 
-O requisito de "Acesso" foi aplicado nas views de exams, institution, medprofiles e patients para bloquear o acesso de usuários não autenticados. Para isso, foi utilizado "from django.contrib.auth.decorators import login_required" e "@login_required(login_url='/login/')" para retornar para a página de login.
+### Login
+
+O acesso a exames, instituicoes, medprofiles e patients e protegido com autenticacao via `login_required`.
+
 <img width="1911" height="939" alt="image" src="https://github.com/user-attachments/assets/682972c3-ba85-472a-bc86-9cfc738fff0c" />
 
-### Cadastro 
+### Cadastro
+
 <img width="1902" height="933" alt="image" src="https://github.com/user-attachments/assets/11dcbaaa-5d45-4d51-9c6e-fe7ba32851d4" />
 
+## Execucao local
 
+```bash
+py -3 manage.py migrate
+py -3 manage.py runserver 0.0.0.0:8000
+```
 
+## Testes
 
-
+```bash
+py -3 manage.py test apps.exams -v 1
+```
