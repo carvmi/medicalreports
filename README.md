@@ -60,7 +60,7 @@ Aplicação Django para cadastro e gerenciamento de dados clinicos de mamografia
 
 ## Exportacao PDF
 
-A geração de PDF é feita com ReportLab na app de exames.
+A geração de PDF é feita com ReportLab na app de exames. (Obs: Dados fictícios para teste)
 
 <img width="1610" height="867" alt="image" src="https://github.com/user-attachments/assets/afe66293-dfc2-4282-bece-93c67c4e98b6" />
 
