@@ -13,3 +13,4 @@ trust_proxy_headers = os.getenv("DJANGO_TRUST_PROXY_HEADERS", "0") == "1"
 if trust_proxy_headers:
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     USE_X_FORWARDED_HOST = True
+    USE_X_FORWARDED_PORT = True

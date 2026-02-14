@@ -1,6 +1,7 @@
 from django.test import RequestFactory, SimpleTestCase, override_settings
 
 from apps.api.handlers.common import get_client_ip
+from apps.exams.forms import MammogramExamForm
 
 
 class GetClientIpTests(SimpleTestCase):
@@ -36,3 +37,8 @@ class GetClientIpTests(SimpleTestCase):
         )
 
         self.assertEqual(get_client_ip(request), "10.0.0.10")
+
+
+class MammogramExamFormTests(SimpleTestCase):
+    def test_user_ip_is_not_exposed_in_form(self):
+        self.assertNotIn("user_ip", MammogramExamForm.base_fields)

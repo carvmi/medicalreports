@@ -4,7 +4,7 @@ from .models import MammogramExam
 class MammogramExamForm(forms.ModelForm):
     class Meta:
         model = MammogramExam
-        exclude = ("is_active", "deleted_at")
+        exclude = ("is_active", "deleted_at", "user_ip")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
