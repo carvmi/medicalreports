@@ -1,7 +1,11 @@
-from django.test import RequestFactory, SimpleTestCase, override_settings
+from datetime import date
+
+from django.test import RequestFactory, SimpleTestCase, TestCase, override_settings
 
 from apps.api.handlers.common import get_client_ip
 from apps.exams.forms import MammogramExamForm
+from apps.institution.models import Institution
+from apps.patients.models import Patient
 
 
 class GetClientIpTests(SimpleTestCase):
@@ -42,3 +46,35 @@ class GetClientIpTests(SimpleTestCase):
 class MammogramExamFormTests(SimpleTestCase):
     def test_user_ip_is_not_exposed_in_form(self):
         self.assertNotIn("user_ip", MammogramExamForm.base_fields)
+
+
+class MammogramExamFormQuerysetTests(TestCase):
+    def test_patient_and_local_fields_only_include_active_records(self):
+        active_patient = Patient.objects.create(full_name="Ativa", birth_date=date(1990, 1, 1), is_active=True)
+        Patient.objects.create(full_name="Inativa", birth_date=date(1991, 1, 1), is_active=False)
+
+        active_local = Institution.objects.create(
+            name="Clinica Ativa",
+            phone="81999999999",
+            email="ativa@example.com",
+            is_active=True,
+        )
+        Institution.objects.create(
+            name="Clinica Inativa",
+            phone="81888888888",
+            email="inativa@example.com",
+            is_active=False,
+        )
+
+        form = MammogramExamForm()
+
+        self.assertQuerySetEqual(
+            form.fields["patient"].queryset.order_by("id"),
+            [active_patient],
+            transform=lambda x: x,
+        )
+        self.assertQuerySetEqual(
+            form.fields["local"].queryset.order_by("id"),
+            [active_local],
+            transform=lambda x: x,
+        )

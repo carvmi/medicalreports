@@ -1,5 +1,7 @@
 from django import forms
 from .models import MammogramExam
+from apps.patients.models import Patient
+from apps.institution.models import Institution
 
 class MammogramExamForm(forms.ModelForm):
     class Meta:
@@ -8,6 +10,8 @@ class MammogramExamForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields["patient"].queryset = Patient.objects.filter(is_active=True)
+        self.fields["local"].queryset = Institution.objects.filter(is_active=True)
         for field in self.fields.values():
             field.widget.attrs.setdefault(
                 "class",
