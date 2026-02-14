@@ -1,6 +1,8 @@
 import json
+from ipaddress import ip_address
 
 from django.http import JsonResponse, QueryDict
+from django.conf import settings
 from django.utils import timezone
 
 
@@ -63,14 +65,30 @@ def build_file_url(request, file_field):
 
 
 def get_client_ip(request):
-    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
-    if x_forwarded_for:
-        return x_forwarded_for.split(",")[0]
-    return request.META.get("REMOTE_ADDR")
+    remote_addr = request.META.get("REMOTE_ADDR")
+    if not remote_addr:
+        return None
+
+    try:
+        ip_address(remote_addr)
+    except ValueError:
+        return None
+
+    trusted_proxy_ips = set(getattr(settings, "TRUSTED_PROXY_IPS", []))
+    if remote_addr in trusted_proxy_ips:
+        x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR", "")
+        forwarded_ip = x_forwarded_for.split(",")[0].strip() if x_forwarded_for else ""
+        if forwarded_ip:
+            try:
+                ip_address(forwarded_ip)
+                return forwarded_ip
+            except ValueError:
+                pass
+
+    return remote_addr
 
 
 def soft_delete(instance):
     instance.is_active = False
     instance.deleted_at = timezone.now()
     instance.save(update_fields=["is_active", "deleted_at"])
-

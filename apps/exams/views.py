@@ -7,6 +7,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfgen import canvas
 from .forms import MammogramExamForm
 from .models import MammogramExam
+from apps.api.handlers.common import get_client_ip
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 
@@ -34,14 +35,6 @@ def ecreate(request):
    exam.save()
    return redirect('exams.eview') 
  return render(request, 'form.html', {'form': form})
-
-def get_client_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
 
 def estore(request):
     if request.method == 'POST':

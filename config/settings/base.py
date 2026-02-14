@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parents[2]
@@ -85,3 +86,8 @@ MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Comma-separated IPs of trusted reverse proxies allowed to supply
+# forwarding headers such as X-Forwarded-For.
+trusted_proxy_ips = os.getenv("DJANGO_TRUSTED_PROXY_IPS", "")
+TRUSTED_PROXY_IPS = [ip.strip() for ip in trusted_proxy_ips.split(",") if ip.strip()]
