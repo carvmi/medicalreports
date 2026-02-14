@@ -1,10 +1,10 @@
 ﻿# Medical Reports
 
-Aplicacao Django para cadastro e gerenciamento de dados clinicos de mamografia, com interface web e API JSON.
+Aplicação Django para cadastro e gerenciamento de dados clinicos de mamografia, com interface web e API JSON.
 
 ## Funcionalidades implementadas
 
-- Autenticacao de usuario na interface web:
+- Autenticação de usuário na interface web:
 - cadastro (`/cadastro/`)
 - login (`/login/`)
 - CRUD web para:
@@ -14,27 +14,27 @@ Aplicacao Django para cadastro e gerenciamento de dados clinicos de mamografia, 
 - perfis profissionais (`/medprofiles/`)
 - Soft delete nas entidades principais com `is_active` e `deleted_at`.
 - Upload de imagem do exame e logo da instituicao.
-- Exportacao de laudo em PDF para exames (`/exams/report/<id>`), contendo dados do paciente, instituicao, exame, aceite e IP registrado.
-- API JSON com autenticacao de sessao para:
+- Exportação de laudo em PDF para exames (`/exams/report/<id>`), contendo dados do paciente, instituicao, exame, aceite e IP registrado.
+- API JSON com autenticação de sessão para:
 - auth (`/api/auth/register`, `/api/auth/login`, `/api/auth/me`)
 - patients (`/api/patients/`, `/api/patients/<id>/`)
 - institutions (`/api/institutions/`, `/api/institutions/<id>/`)
 - addresses (`/api/addresses/`, `/api/addresses/<id>/`)
 - medprofiles (`/api/medprofiles/`, `/api/medprofiles/<id>/`)
 - exams (`/api/exams/`, `/api/exams/<id>/`)
-- Endpoint de documentacao da API em HTML (`/api/docs`), carregado de `MRAPI-documentation.html`.
+- Endpoint de documentação da API em HTML (`/api/docs`), carregado de `MRAPI-documentation.html`.
 
 ## Regras implementadas para IP
 
-- O IP do exame e preenchido automaticamente no backend no momento de criacao.
-- O campo `user_ip` nao aparece nos formularios de criacao/edicao.
+- O IP do exame e preenchido automaticamente no backend no momento de criação.
+- O campo `user_ip` não aparece nos formularios de criação/edição.
 - O IP e mostrado no PDF do laudo.
-- `X-Forwarded-For` so e aceito quando a requisicao vem de proxy confiavel (`DJANGO_TRUSTED_PROXY_IPS`).
+- `X-Forwarded-For` só é aceito quando a requisição vem de proxy confiável (`DJANGO_TRUSTED_PROXY_IPS`).
 
 ## Filtros de registros ativos
 
 - Listagens web usam apenas registros ativos.
-- No formulario de exame, os selects de `patient` e `local` exibem apenas opcoes ativas (`is_active=True`).
+- No formulario de exame, os selects de `patient` e `local` exibem apenas opções ativas (`is_active=True`).
 
 ## Estrutura do projeto
 
@@ -60,7 +60,7 @@ Aplicacao Django para cadastro e gerenciamento de dados clinicos de mamografia, 
 
 ## Exportacao PDF
 
-A geracao de PDF e feita com ReportLab na app de exames.
+A geração de PDF é feita com ReportLab na app de exames.
 
 <img width="1610" height="867" alt="image" src="https://github.com/user-attachments/assets/afe66293-dfc2-4282-bece-93c67c4e98b6" />
 
@@ -72,7 +72,7 @@ A geracao de PDF e feita com ReportLab na app de exames.
 
 ### Login
 
-O acesso a exames, instituicoes, medprofiles e patients e protegido com autenticacao via `login_required`.
+O acesso a exames, instituicoes, medprofiles e patients é protegido com autenticacao via `login_required`.
 
 <img width="1911" height="939" alt="image" src="https://github.com/user-attachments/assets/682972c3-ba85-472a-bc86-9cfc738fff0c" />
 
